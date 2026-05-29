@@ -1,1 +1,1412 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruixin Ji | AI Internship Portfolio</title>
+    <meta
+      name="description"
+      content="Ruixin Ji's AI internship portfolio, connecting environmental engineering, ESG analytics, research synthesis, and AI product thinking."
+    />
+    <style>
+:root {
+  color-scheme: dark;
+  --ink: #f7f7f4;
+  --muted: #b9b9b4;
+  --faint: #85857f;
+  --paper: #050505;
+  --panel: #111111;
+  --panel-soft: #181818;
+  --line: rgba(255, 255, 255, 0.14);
+  --accent: #9be22d;
+  --accent-strong: #79c100;
+  --accent-soft: rgba(155, 226, 45, 0.16);
+  --shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
+  --radius: 0;
+  --font: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font);
+  background:
+    radial-gradient(circle at 78% 9%, rgba(155, 226, 45, 0.12), transparent 22rem),
+    linear-gradient(180deg, #050505 0%, #050505 58%, #0b0b0b 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  min-height: 64px;
+  padding: 0 5vw;
+  color: var(--ink);
+  background: rgba(5, 5, 5, 0.9);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--paper);
+  background: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.brand::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  align-self: flex-end;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.nav a {
+  position: relative;
+  transition: color 180ms ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -22px;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.icon-button {
+  justify-self: end;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: #111;
+  cursor: pointer;
+}
+
+.icon-button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.icon-button:hover,
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button {
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid var(--line);
+  font-size: 0.96rem;
+  font-weight: 800;
+}
+
+.button svg,
+.icon-button svg,
+.skill-grid svg,
+.project-top svg,
+.hobby-grid svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.primary {
+  color: #050505;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.primary:hover {
+  background: #b7ff3f;
+  border-color: #b7ff3f;
+}
+
+.secondary {
+  color: var(--ink);
+  background: transparent;
+}
+
+.secondary:hover {
+  color: #050505;
+  background: var(--ink);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(360px, 0.72fr);
+  gap: clamp(34px, 6vw, 92px);
+  align-items: center;
+  min-height: calc(100vh - 64px);
+  padding: clamp(68px, 9vw, 116px) 5vw 42px;
+}
+
+.hero-copy {
+  max-width: 980px;
+}
+
+.profile-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 26px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.profile-kicker span {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--accent);
+  font-size: clamp(0.9rem, 1.4vw, 1.04rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  position: relative;
+  margin-bottom: 22px;
+  max-width: 960px;
+  font-size: clamp(5rem, 12vw, 12.5rem);
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+}
+
+h1::after {
+  content: "";
+  display: inline-block;
+  width: 0.14em;
+  height: 0.14em;
+  margin-left: 0.04em;
+  background: var(--accent);
+  border-radius: 50%;
+  vertical-align: baseline;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: clamp(2.4rem, 5.6vw, 6.2rem);
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 1.22rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.hero-lede {
+  max-width: 780px;
+  color: var(--muted);
+  font-size: clamp(1.24rem, 2.1vw, 1.8rem);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.hero-actions,
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.focus-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+  max-width: 820px;
+}
+
+.focus-line span {
+  min-height: 34px;
+  padding: 8px 12px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.08);
+  border-left: 4px solid var(--accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.portrait-panel {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(540px, 58vw, 720px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    #111;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.portrait-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.18), transparent 35%, rgba(155, 226, 45, 0.08)),
+    linear-gradient(180deg, transparent 54%, rgba(5, 5, 5, 0.92));
+}
+
+.portrait-panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: 50% 14%;
+  filter: saturate(0.95) contrast(1.08);
+}
+
+.portrait-meta {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 90px;
+  z-index: 2;
+  display: grid;
+  gap: 7px;
+  padding: 18px 20px;
+  color: var(--ink);
+  background: rgba(5, 5, 5, 0.72);
+  border-left: 6px solid var(--accent);
+  backdrop-filter: blur(16px);
+}
+
+.portrait-meta span {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.portrait-meta strong {
+  color: var(--ink);
+  font-size: 1.04rem;
+  line-height: 1.35;
+}
+
+.signal-strip {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.signal-strip span,
+.project-top span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 11px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 800;
+  backdrop-filter: blur(12px);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.metrics article {
+  min-height: 190px;
+  padding: 28px;
+  background: #0d0d0d;
+  border-right: 1px solid var(--line);
+}
+
+.metrics article:last-child {
+  border-right: 0;
+}
+
+.metrics small {
+  display: block;
+  margin-bottom: 30px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.metrics strong {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.metrics span,
+.body-copy,
+.timeline p,
+.skill-grid p,
+.project-grid p,
+.project-grid li,
+.impact-list,
+.hobby-grid p {
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.section {
+  padding: clamp(78px, 10vw, 132px) 5vw;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1fr);
+  gap: clamp(34px, 6vw, 86px);
+  align-items: start;
+}
+
+.body-copy {
+  font-size: clamp(1.06rem, 1.45vw, 1.22rem);
+  font-weight: 500;
+}
+
+.body-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.research-note {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 22px;
+  background: var(--panel);
+  border-left: 6px solid var(--accent);
+}
+
+.note-label {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.skill-grid,
+.project-grid,
+.hobby-grid {
+  display: grid;
+  gap: 18px;
+  padding-top: 0;
+}
+
+.skill-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.project-grid,
+.hobby-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.skill-grid article,
+.project-grid article,
+.hobby-grid article {
+  position: relative;
+  overflow: hidden;
+  min-height: 240px;
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.skill-grid article::before,
+.project-grid article::before,
+.hobby-grid article::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 6px;
+  background: var(--accent);
+  transition: width 180ms ease;
+}
+
+.skill-grid article:hover,
+.project-grid article:hover,
+.hobby-grid article:hover {
+  transform: translateY(-4px);
+  background: #171717;
+  border-color: rgba(155, 226, 45, 0.42);
+}
+
+.skill-grid article:hover::before,
+.project-grid article:hover::before,
+.hobby-grid article:hover::before {
+  width: 100%;
+}
+
+.skill-grid svg,
+.project-top svg,
+.hobby-grid svg {
+  margin-bottom: 18px;
+  color: var(--accent);
+}
+
+.lab-band {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.8fr);
+  gap: clamp(32px, 5vw, 76px);
+  align-items: center;
+  margin: 0 5vw;
+  padding: clamp(56px, 8vw, 96px);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 82% 0%, rgba(155, 226, 45, 0.16), transparent 30%),
+    #0d0d0d;
+  border: 1px solid var(--line);
+}
+
+.lab-console {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  background: transparent;
+}
+
+.lab-console div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 18px;
+  padding: 20px;
+  background: #151515;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--accent);
+}
+
+.lab-console span {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.lab-console strong {
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.section-heading {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 38px;
+}
+
+.section-heading h2 {
+  max-width: 1080px;
+}
+
+.timeline {
+  display: grid;
+  gap: 14px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.timeline article {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 28px;
+  padding: 30px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+}
+
+.date {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.impact-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.project-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.project-grid ul {
+  margin: 18px 0 0;
+  padding-left: 20px;
+}
+
+.hobbies {
+  padding-top: clamp(56px, 8vw, 102px);
+}
+
+.hobby-grid article {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  margin: 0 5vw 56px;
+  padding: clamp(56px, 8vw, 96px);
+  text-align: left;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(155, 226, 45, 0.18), transparent 28%),
+    #0d0d0d;
+  border: 1px solid var(--line);
+}
+
+.contact h2 {
+  max-width: 1040px;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 5vw;
+  color: var(--faint);
+  font-size: 0.78rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 980px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hero,
+  .two-column,
+  .lab-band {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics,
+  .skill-grid,
+  .project-grid,
+  .hobby-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    padding: 0 18px;
+  }
+
+  .brand span:last-child {
+    display: none;
+  }
+
+  .hero,
+  .section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+  }
+
+  h2 {
+    font-size: 2.65rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .portrait-panel {
+    min-height: 520px;
+  }
+
+  .portrait-panel img {
+    object-position: 50% 14%;
+  }
+
+  .portrait-meta {
+    left: 18px;
+    right: 18px;
+    bottom: 84px;
+  }
+
+  .signal-strip {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .metrics,
+  .skill-grid,
+  .project-grid,
+  .hobby-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics article {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .lab-band,
+  .contact {
+    margin-left: 18px;
+    margin-right: 18px;
+    padding: 34px 18px;
+  }
+
+  .lab-console div,
+  .timeline article {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .timeline article {
+    padding: 24px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+</style>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script>
+const content = {
+  en: {
+    nav: ["AI Fit", "Experience", "Projects", "Life", "Contact"],
+    heroEyebrow: "AI Internship Candidate",
+    heroTitle: "Ruixin Ji",
+    heroLead:
+      "Environmental science graduate student turning machine-learning research, data analysis, and domain problems into practical AI workflows.",
+    primaryCta: "View AI Portfolio",
+    emailCta: "Email Me",
+    focus: ["AI Product", "Data Analyst", "ML Research", "Prompt & Evaluation"],
+    portraitMeta: ["ML + Environmental Data", "Machine-learning research mindset, product-ready execution."],
+    metrics: [
+      ["Machine Learning", "Research topic focused on applying ML methods to environmental science problems"],
+      ["Environmental Data", "Domain background in environmental science and engineering data scenarios"],
+      ["Forecasting", "Capacity forecasting, risk warning, and time-series model validation"],
+      ["Quant Finance", "ESG multi-factor scoring, factor backtesting, and strategy reporting"],
+    ],
+    fitEyebrow: "Positioning",
+    fitTitle: "Machine learning work where domain knowledge actually matters.",
+    fitBody: [
+      "I am applying for AI-related internships with a machine-learning research background and a domain advantage: I understand environmental science data, sustainability information, scientific text, and business research materials.",
+      "I bring Python foundations, C#/.NET exposure, structured research habits, and experience converting messy domain materials into features, evaluations, and decision-ready summaries.",
+    ],
+    note: ["Candidate signal", "Turns environmental data, papers, and business reports into model-ready insight."],
+    skillTitles: ["AI Application Thinking", "ML & Data Analysis", "Scientific Research", "Technical Foundation"],
+    skillBodies: [
+      "Frame domain workflows for retrieval, classification, summarization, evaluation, and human review.",
+      "Translate environmental and sustainability questions into datasets, features, evaluation logic, and insight.",
+      "Read complex papers, synthesize methods, and connect technical evidence with machine-learning workflows.",
+      "Python, C#, object-oriented thinking, computer basics, Office automation, and fast tool learning.",
+    ],
+    workEyebrow: "Experience",
+    workTitle: "Selected experience reframed for machine-learning and AI internships.",
+    workItems: [
+      [
+        "2024.01 - 2024.06",
+        "Michelin Investment (China) | ESG Data Intern",
+        [
+          "Used Python to automate collection and cleaning of 20+ suppliers' capacity, lead-time, and on-time delivery time-series data.",
+          "Built daily indicator datasets for supply-chain modeling, capacity forecasting, and risk warning analysis.",
+          "Identified shortage and production-delay factors through feature screening to support contingency planning.",
+        ],
+      ],
+      [
+        "2023.10 - 2023.11",
+        "Roland Berger Strategy Consultants | Consulting Intern",
+        [
+          "Processed 500+ target-generation records with Python, covering cleaning, feature engineering, and model training.",
+          "Adjusted replenishment strategy with heuristic optimization; backtesting showed 15% lower stockout risk and 8% higher order delivery rate.",
+        ],
+      ],
+      [
+        "2022.10 - 2023.03",
+        "China Telecom BestPay | Operations Intern",
+        [
+          "Processed 500+ sales contracts and performance records, combining market trends to optimize procurement strategy and reduce excess purchasing cost by 12%.",
+          "Built a core-metric monitoring dashboard for daily orders and delivery data; delivery timeliness increased to 98%.",
+        ],
+      ],
+      [
+        "2025.01 - 2026.05",
+        "Fudan University | Machine Learning Environmental Data Research",
+        [
+          "Built a time-series prediction model for photodegradation pollutant efficiency using machine-learning algorithms.",
+          "Used Python, Pandas, NumPy, Origin, and MATLAB for modeling, factor extraction, significance analysis, and validation.",
+          "Developed core skills in quantitative factor mining, time-series modeling, and backtesting-style verification.",
+        ],
+      ],
+      [
+        "2026.04 - 2026.06",
+        "BNP Paribas Green Finance Challenge | Green Finance Project",
+        [
+          "Built an ESG multi-factor quantitative evaluation model to score green assets and analyze listed-company value.",
+          "Processed financial statements and ESG disclosure data with Python, completing factor backtesting and validity checks.",
+          "Delivered a quantitative strategy report and pitch, strengthening factor logic, model explanation, and investment research communication.",
+        ],
+      ],
+    ],
+    projectEyebrow: "AI Portfolio Directions",
+    projectTitle: "Machine-learning projects I can discuss, prototype, or extend during interviews.",
+    labEyebrow: "Interview Angle",
+    labTitle: "Not “I know AI” — I can help AI understand a real domain.",
+    labRows: [
+      ["input", "environmental data, ESG reports, scientific papers, spreadsheets"],
+      ["process", "feature thinking, model evaluation, extraction, validation"],
+      ["output", "human-checkable ML insight for product or research teams"],
+    ],
+    projects: [
+      [
+        "Supplier Risk Forecasting Model",
+        "Builds daily supply-chain indicators and predicts capacity or delivery risks from supplier time-series data.",
+        ["20+ supplier indicators", "Feature screening for shortage factors", "Risk-warning output for contingency planning"],
+      ],
+      [
+        "Photodegradation Efficiency Prediction",
+        "Uses machine-learning algorithms to forecast pollutant degradation efficiency and identify significant influencing factors.",
+        ["Time-series prediction", "Pandas, NumPy, Origin, MATLAB", "Factor extraction and validation"],
+      ],
+      [
+        "ESG Multi-factor Investment Model",
+        "Scores green assets from financial statements and ESG disclosures, then validates factor effectiveness through backtesting.",
+        ["ESG factor construction", "Python backtesting workflow", "Strategy report and pitch output"],
+      ],
+    ],
+    hobbiesEyebrow: "Beyond Work",
+    hobbiesTitle: "Energy outside the screen.",
+    hobbies: [
+      ["Rock Climbing", "Problem-solving under pressure, one route at a time."],
+      ["Fitness", "Consistency, discipline, and a clear mind."],
+      ["Basketball", "Fast decisions, teamwork, and competitive rhythm."],
+    ],
+    contactEyebrow: "Contact",
+    contactTitle: "Open to AI product, data, research, and domain application internships.",
+  },
+  zh: {
+    nav: ["AI 匹配", "经历", "项目", "生活", "联系"],
+    heroEyebrow: "AI 实习候选人",
+    heroTitle: "Ruixin Ji",
+    heroLead: "将机器学习课题、环境科学数据分析与科研能力，转化为可落地的 AI 应用工作流。",
+    primaryCta: "查看 AI 作品集",
+    emailCta: "联系我",
+    focus: ["AI 产品", "数据分析", "机器学习研究", "Prompt 与评测"],
+    portraitMeta: ["机器学习 + 环境数据", "机器学习研究思维，产品级执行。"],
+    metrics: [
+      ["机器学习课题", "围绕机器学习方法在环境科学问题中的应用展开研究"],
+      ["环境数据", "具备环境科学与工程背景，理解真实数据场景"],
+      ["预测建模", "产能预测、风险预警、时序建模与验证"],
+      ["量化金融", "ESG 多因子打分、因子回测与策略报告"],
+    ],
+    fitEyebrow: "定位",
+    fitTitle: "适合需要领域理解的机器学习与 AI 应用岗位。",
+    fitBody: [
+      "我希望投递 AI 相关实习，并把自己的优势放在“机器学习 + 环境科学/可持续/数据”方向：能理解环境数据、复杂 ESG 信息、科研文本和商业研究材料。",
+      "我具备 Python 基础、C#/.NET 接触经验、结构化研究习惯，也有把复杂领域材料整理成特征、评估逻辑和可决策摘要的实践经验。",
+    ],
+    note: ["候选人信号", "能把环境数据、论文与商业报告，转化为模型可用、可判断、可复核的洞察。"],
+    skillTitles: ["AI 应用思维", "机器学习与数据分析", "科研文献能力", "技术基础"],
+    skillBodies: [
+      "能把行业工作流拆解为检索、分类、总结、评测和人工复核环节。",
+      "将环境与可持续问题转化为数据集、特征、评估逻辑和可解释洞察。",
+      "阅读复杂论文，提炼方法、变量和证据，并连接到机器学习工作流。",
+      "Python、C#、面向对象基础、计算机基础、Office 自动化和快速学习能力。",
+    ],
+    workEyebrow: "经历",
+    workTitle: "面向机器学习与 AI 实习重新组织的经历亮点。",
+    workItems: [
+      [
+        "2024.01 - 2024.06",
+        "米其林投资（中国）| ESG 数据实习生",
+        [
+          "使用 Python 自动化采集、清洗 20+ 供应商产能、交付周期、准时交付率等时序数据，搭建日频指标库。",
+          "构建产能预测与风险预警模型，通过特征筛选识别原材料短缺、产线延迟等关键因子。",
+          "支撑供应链数据建模与风险分析，协助制定备选方案，降低业务中断风险。",
+        ],
+      ],
+      [
+        "2023.10 - 2023.11",
+        "罗兰贝格战略咨询公司 | 咨询实习生",
+        [
+          "运用 Python 处理 500+ 目标生成数据，完成数据清洗、特征工程、模型训练全流程。",
+          "基于启发式优化方法调整补货策略，回测显示缺货风险降低 15%，订单交付率提升 8%。",
+        ],
+      ],
+      [
+        "2022.10 - 2023.03",
+        "中国电信翼支付 | 综合实习生",
+        [
+          "处理 500+ 份销售合同与绩效数据，结合市场趋势优化采购策略，降低过量采购成本 12%。",
+          "搭建核心指标监控看板，对日频订单、交付数据进行跟踪，识别并解决成本问题，交付及时率提升至 98%。",
+        ],
+      ],
+      [
+        "2025.01 - 2026.05",
+        "机器学习环境数据分析研究 | 复旦大学",
+        [
+          "运用机器学习算法构建光降解污染物效率时序预测模型，完成数据处理、特征挖掘、效果验证全流程。",
+          "使用 Python、Pandas、NumPy、Origin、MATLAB 实现建模与分析，提取降解关键影响因子并做显著性分析。",
+          "具备量化因子挖掘、时序建模、回测验证等核心能力。",
+        ],
+      ],
+      [
+        "2026.04 - 2026.06",
+        "法国巴黎银行绿色金融挑战赛 | 绿色金融项目",
+        [
+          "构建 ESG 多因子量化评估模型，对上市公司绿色资产进行打分与价值分析。",
+          "使用 Python 处理财报、ESG 披露数据，完成因子回测与有效性验证，形成绿色主题投资策略框架。",
+          "完成量化策略报告与路演，强化因子逻辑、模型解释与投研表达能力。",
+        ],
+      ],
+    ],
+    projectEyebrow: "AI 作品集方向",
+    projectTitle: "可在面试中讨论、原型化或继续扩展的机器学习项目。",
+    labEyebrow: "面试切入点",
+    labTitle: "不是只会说“我懂 AI”，而是能帮助 AI 理解真实行业。",
+    labRows: [
+      ["输入", "环境数据、ESG 报告、科研论文、Excel 表格"],
+      ["处理", "特征思维、模型评估、信息抽取、校验"],
+      ["输出", "可人工复核、能服务产品或研究团队的 ML 洞察"],
+    ],
+    projects: [
+      [
+        "供应链风险预测模型",
+        "基于供应商日频时序指标，预测产能与交付风险，辅助备选方案制定。",
+        ["20+ 供应商指标", "短缺与延迟因子筛选", "风险预警输出"],
+      ],
+      [
+        "光降解效率预测模型",
+        "运用机器学习算法预测污染物光降解效率，并识别关键影响因子。",
+        ["时序预测建模", "Pandas / NumPy / Origin / MATLAB", "因子提取与显著性验证"],
+      ],
+      [
+        "ESG 多因子投资模型",
+        "处理财报与 ESG 披露数据，为绿色资产打分，并通过回测验证因子有效性。",
+        ["ESG 因子构建", "Python 回测流程", "策略报告与路演输出"],
+      ],
+    ],
+    hobbiesEyebrow: "工作之外",
+    hobbiesTitle: "保持能量感，也保持判断力。",
+    hobbies: [
+      ["攀岩", "在路线里拆问题，训练专注和抗压。"],
+      ["健身", "用长期主义维持身体和节奏。"],
+      ["打篮球", "快速决策、团队配合和竞争感。"],
+    ],
+    contactEyebrow: "联系",
+    contactTitle: "开放投递 AI 产品、数据、研究和行业应用类实习。",
+  },
+};
+
+let language = "zh";
+
+function applyLanguage(nextLanguage) {
+  language = nextLanguage;
+  const data = content[language];
+  const navLinks = document.querySelectorAll(".nav a");
+  navLinks.forEach((link, index) => {
+    if (data.nav[index]) link.textContent = data.nav[index];
+  });
+
+  document.querySelector(".hero .eyebrow").textContent = data.heroEyebrow;
+  document.querySelector("h1").textContent = data.heroTitle;
+  document.querySelector(".hero-lede").textContent = data.heroLead;
+  document.querySelector(".hero-actions .primary span").textContent = data.primaryCta;
+  document.querySelector(".hero-actions .secondary span").textContent = data.emailCta;
+  document.querySelectorAll(".focus-line span").forEach((node, index) => {
+    node.textContent = data.focus[index];
+  });
+  document.querySelector(".portrait-meta span").textContent = data.portraitMeta[0];
+  document.querySelector(".portrait-meta strong").textContent = data.portraitMeta[1];
+  document.querySelectorAll(".metrics article").forEach((node, index) => {
+    node.querySelector("strong").textContent = data.metrics[index][0];
+    node.querySelector("span").textContent = data.metrics[index][1];
+  });
+  document.querySelector("#fit .eyebrow").textContent = data.fitEyebrow;
+  document.querySelector("#fit h2").textContent = data.fitTitle;
+  document.querySelectorAll("#fit .body-copy p").forEach((node, index) => {
+    node.textContent = data.fitBody[index];
+  });
+  document.querySelector(".note-label").textContent = data.note[0];
+  document.querySelector(".research-note span:last-child").textContent = data.note[1];
+  document.querySelectorAll(".skill-grid h3").forEach((node, index) => {
+    node.textContent = data.skillTitles[index];
+  });
+  document.querySelectorAll(".skill-grid p").forEach((node, index) => {
+    node.textContent = data.skillBodies[index];
+  });
+  document.querySelector("#work .eyebrow").textContent = data.workEyebrow;
+  document.querySelector("#work h2").textContent = data.workTitle;
+  document.querySelectorAll(".timeline article").forEach((node, index) => {
+    if (!data.workItems[index]) return;
+    node.querySelector(".date").textContent = data.workItems[index][0];
+    node.querySelector("h3").textContent = data.workItems[index][1];
+    const list = node.querySelector(".impact-list");
+    if (list) {
+      list.innerHTML = data.workItems[index][2].map((item) => `<li>${item}</li>`).join("");
+    }
+  });
+  document.querySelector("#projects .eyebrow").textContent = data.projectEyebrow;
+  document.querySelector("#projects h2").textContent = data.projectTitle;
+  document.querySelector(".lab-band .eyebrow").textContent = data.labEyebrow;
+  document.querySelector(".lab-band h2").textContent = data.labTitle;
+  document.querySelectorAll(".lab-console div").forEach((node, index) => {
+    node.querySelector("span").textContent = data.labRows[index][0];
+    node.querySelector("strong").textContent = data.labRows[index][1];
+  });
+  document.querySelectorAll(".project-grid article").forEach((node, index) => {
+    node.querySelector("h3").textContent = data.projects[index][0];
+    node.querySelector("p").textContent = data.projects[index][1];
+    node.querySelectorAll("li").forEach((item, itemIndex) => {
+      item.textContent = data.projects[index][2][itemIndex];
+    });
+  });
+  document.querySelector("#hobbies .eyebrow").textContent = data.hobbiesEyebrow;
+  document.querySelector("#hobbies h2").textContent = data.hobbiesTitle;
+  document.querySelectorAll(".hobby-grid article").forEach((node, index) => {
+    node.querySelector("h3").textContent = data.hobbies[index][0];
+    node.querySelector("p").textContent = data.hobbies[index][1];
+  });
+  document.querySelector("#contact .eyebrow").textContent = data.contactEyebrow;
+  document.querySelector("#contact h2").textContent = data.contactTitle;
+  document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+
+  document.getElementById("languageToggle").addEventListener("click", () => {
+    applyLanguage(language === "en" ? "zh" : "en");
+  });
+  applyLanguage("zh");
+});
+
+</script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark">RJ</span>
+        <span>Ruixin Ji</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#fit">AI Fit</a>
+        <a href="#work">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#hobbies">Life</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="icon-button" id="languageToggle" type="button" aria-label="Switch language">
+        <i data-lucide="languages"></i>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="profile-kicker">
+            <span>AI / ML / Environmental Data</span>
+            <span>Portfolio v2026</span>
+          </div>
+          <p class="eyebrow">AI Internship Candidate</p>
+          <h1>Ruixin Ji</h1>
+          <p class="hero-lede">
+            Environmental science graduate student turning machine-learning research, data analysis, and domain
+            problems into practical AI workflows.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">
+              <i data-lucide="sparkles"></i>
+              <span>View AI Portfolio</span>
+            </a>
+            <a class="button secondary" href="mailto:ruixin.jii@gmail.com">
+              <i data-lucide="mail"></i>
+              <span>Email Me</span>
+            </a>
+          </div>
+          <div class="focus-line" aria-label="Target roles">
+            <span>AI Product</span>
+            <span>Data Analyst</span>
+            <span>ML Research</span>
+            <span>Prompt & Evaluation</span>
+          </div>
+        </div>
+        <div class="portrait-panel" aria-label="Portrait of Ruixin Ji">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQUFBAYFBQUHBgYHCQ8KCQgICRMNDgsPFhMXFxYTFRUYGyMeGBohGhUVHikfISQlJygnGB0rLismLiMmJyb/2wBDAQYHBwkICRIKChImGRUZJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJib/wAARCAINAaQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6mo/Kg0UAH5UflRRQAflR+VFFABR+X5UUUAL+VFJRQAfgKWkooAWkoooAPyooooAPwo/L8qKKAD8qPy/KiigA/KiiigAzS0lFAB+VL/npSMVUZY4qPz4Acecnp96gCSlpOOxo60AFH5UUUAH4CiijFAB+X5UfgKKKAFpKKKAD/PSiiigA/KiiigAo/wA9KKKACiiigA/Kj8qKKAF/KikooAKM0UUAH5Uf56UUUABooPaigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKQsBwf5V5f8AE34zeGfBsU9pbSLqusRkr9kjYhUb/bbHH0GTQM9H1HULDTLWS71G9gtIIxueSaQIqj6mvHfGv7QnhjS45Lfw3BLrV6pID7THAvvuPLfgK+bfHnxG8T+NLrz9Vuv3CsTHbR/JDH9F7n3OTXI5uJnA3O5bsi1N30HZdT2C/wDj545url5oza24b7qbMgD061XsvjR41+1BmvVKEguhjDKw/EnH4EV5gNNl25f5D/tGrFokcAEhfd689KLMd0fQdj8cNQuIBaPbrHMwwkgY7AT39a6rQviS9/p0l7PqMltKo/0ZQRsbB5DL1JPbHavl9b2JmR4nKOp6g0661yWGRfK3fKcLtouw0Ppe4+PNpAyq1g8hQATMjD5Tnsver2nfHrw/I4F7EYEP3TuDE9fQ8HjofavlKK5MrFmjba/J6ZY+tV71ZiQqbyB/dwKNRaH334a8Y+HvEduJtL1BW7NHINjKfQg10NfnRpOva3oV0LjTr2a1mXjdGxGR6EdCPY19D/Cv49Wsoi07xURaTngXKj90/plf4D9OPYU7g12PpCiq2m39nqVol3Y3CTwuMhkbIqzTJCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAA9qKDRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUjMqIzuwVVGSxOAB60pIAJJAA5Oa+UP2gPi5Jrd3P4V8N3TLpcRKXU0Zx9pYHkA/wBwfrSbsNK5q/G745SvLceGfBVwBEMx3Opxnl/VYj2H+137etfN7ZeRmkYySMckscgf40rSbQSSM+v+FRCRevTNTuXsW7WBWk+cs+fX/CtRfKgQhnIYcgIuTVC2WZ1B3LEnUknmoLq4TmOJ5JOxYfKv51aRBNc6jltoJyDyCKpS3CZ+XcpPXnrVQpbc43lvY8VJborHaELD0J6UmNFm3DzZWNSWPQirWoQ3dmvkTRbZEJLOfcciuj8EafDLqlu8kR+zdZAT0x3pvi5o3v51VwWzkFiOnoKy5tbGnLpc5yDVpFXy8YXocCrCwfa0MiyspxkDbWViMy5ljyM87OuKv2/2ZwywTSwsD90jIA9xWqMmVpobmFt25XH1qJZkZ/3ybGB4at8WkcsW2RlyRkOh+U/h2rGvLWa2YrLHujP3ZF5FDQ0z0f4V/FLWfBt1FbvIZ9JLjeoGSg74Hcd8V9l+HNe0/XrCG7sZlkWWMSLtPDKf4h/ng1+c8W9F3RNx/s16x8GPifP4Ruo9OvsyaU8m7OfmtmPVk9Qe69O9JOw2rn2tRVXTL2DULGC8tpUmimQOkkZyrqRkMPY1aqiAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAA0UGigAoozRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFc38Q/E9v4R8J3+tT4Jgj+Rf7znhR+JoA8o/aR+J82iW7eENClMd9dRf6Zcr1jjPGxfc85PYe/T5Onby1x3PX1rU8Ravd6xq13reosXu7yQyEemTwPoBxWBI7M3csepqNzTZCySepyewFWLW2Mjq07lQegAyT9BVeNCkgGN8p+6vp7muj060S3QSytumYZJ9KpIhlS4jPAMZjhXog+831rPuNo4cbPRB1/+tWvdSNhnVSC3APcCsRx87c5Pc02CIRuc4I2r2Aq9axZYFfkVeSw61WUcjAya07NRyxHyx8+gJrNlJHZaGsVognG0ExsMHBIHY/Wua1OOa4aR94wPmxnP5Vctrh2U5ZV3A544HT/ABqpqCMkreXlXXnA6EVC3NHsYnmODjJB7mprV+drjHPB/wAD2oki24nAwp4Yehp6LhWKruHG5cdR6itEzNo18BSrSqsuRyTwfocd/eqEtwAXSIboyc7W5IrSshsjXcd0BHyt/d+vtVHWLIx754RgLywHYf4Vd9CTMZQ3zRMVfrt9aaGDsD91xx7GmNlgpzhgafgOTu4f+dQUj339nD4nnQr2Pwjr1wf7Mun/ANDmkbi2kP8AB/usfyP1r6w96/Ni3YswidirZ+V84II6c19q/s/+O38X+ExZ6hLu1jSwsNwT1lX+GT8QOfcGnF9Akup6lRRRVEBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAHtRQe1FABRRRQAUUUUAFFFFABRS0lABRRRQAUUUUAFFFFABRRRQAV8uftXeKWutbsPC9vNm2sU+0XYU8GVvuqfovP/Aq+ldb1K30jSbvUrpgsNtE0jljgYAz/Svz78V6pc6pq15eXMhkmu5nmdmOScnNTJ9C4rqYF1IXcsT1qLBjIx/rG6D+7TsjJPXHT3NLGu05Y89SaQPUuafGkWWPMh7nv7VqI29wg9KzoQUUSMOcfKta1qvlxh2++36e9UmKxXvo8LheW7mst4CMKBn/ABrozEJCFxkJy1XNJ0U3U43rkZ7etRKaWprCm5aHN2mnyMm4/Ln+VXLS0c+YwA8lBjnuSa6vUNKf7V9ngi+YsIU9yf8AJroLzw/HHp9vHHGPkdGfH8QDdT+RrndU6o0DzyWKSKOJcANKWAUdhj/61dHf+HpJ7WBlX58bVPoeoz/Kr39k+dDp9+APkV8jHB+U13mn6cLzRfPUfKwDL+Q4/Os5VOxrCgup4hdWX2diFU+VLwyEcq3Qj6g/0qqtrLY3IByyNyjY6rXpXijw+Vc3QX93KwOf9r1/Hv8AQVivZC8sXhCYmgO4Buue9XGppczlR1sYLII2E0PzRv8Afj6jnv8A41WeQwsYiQ0bD5CfT+6a1/spSInBU46jpn0rF1CJiG2dByK6lI45QsZNxEsZB58tjgg/w1VbdHII5Dx/A9aHmCUFXXKvww96huI9ihHyy9m9vf3oIsRxneNjcSDt6+4r0P4LeMG8JeNbK+uZNlrMfs14T0EbEYb8Dg/nXm6D5vLzyOUPrV23bzTk8sn3l/vCpZcdT9IgQyhlIIIyCO9LivLf2d/Fv/CR+BYrC5mMmoaRi3kLHl4/+WbfkMfhXqVaJ3VzJqzsFFFFMQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAGihu1FAAaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDxr9p3XDYeCf7KSTY2oyqjY6lB8zD9APxr45vZXdj/ec/kK93/an1f7b42j00ShotPt1BUHozctn3xtrwSRt7Fu7/otR1NdokYAJGOw4p8K+Y+McDtTJPlXGOTVq1TYB6j5ifftRcSRYjG+ba5+SPkn1NadkjSSjHHPGemf8/wAqzgMlYlHPVjW3YqEiz1zwPYCouaKJet4uSI+36mvQ/B+kqlobqVf4crnt71x/h+ya5ugu3Koct9fSvXTClloezA3uAv4+lctad3yo9DD07JyZzWk6eX1V7iRf3cWZE/3mOF/QE1u3doIreUuuUEAP1xT/AAvA1ykrn/Vu7Mp9h8q/yJ/Gt7VLdTBLAV5MRA/AY/pWL3OhaI4bT7Py9JtHP+qEijPXgsR/7NXV+ErTbphsW5ELYVumeAR/Sqen2i3HhZY4xzATn8GzW5o/yk7Q2CVJ+mB/hVW1JvoZXiDSku7G5tyv3R8vHPqK85t7ULeJI6BCRhh69q9tvYFCpL2BKt7g15j4qtGhlllhT/US5ZR3Rhn/AOvQny6MbXMro4/UbXyLuSAkbD0yK5DVImt7goejHjNej30Md1apcA/vEIV+OoPQ/wCfeuQ1+zZ4ZHHLI3Tv7H+lbQn0OWpT6o4eZfIuXjYFd3H09DUnzNC8ZHzHkfUf41PdR+fbeefvwsEYe3Y1VQkgOPp+NdCZxONmVHAZepB6g+hqSOQgiUcMpw+P50s4USHjCvzj0/yarktFIsmMjo49RVGex71+zPrDWPjn7MhPl3tuyuo9F+b9Oa+ua/P3wBrEmh+JtP1C2fBt5g456qeCPoQTX3xpd3Hf6bbXsJBjnjV1PsRTj2CfctUUUVZmFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAB7UUjdqKAFopaSgAooooAKKKKACiiigAooooAKKKKACiiigAplxKsFvJO5+WNS5+gGafXHfFzWG0TwFqlzG+yWSJoo2DYIJB5H0GTQxpXdj4p8earJrHiTVdTmYl726djnqFyePy4rmWHJbGB/L2rRuEaaZ2f5sHOf1NUJiD8gPHes0aS3I4gGfe3Tt9KtwjapY9evP6VViOY93TccD6VbIyoj9TSZUe5PaIWDN3J/l/n9a24gu1fRRg/hVC1iZfIRAS5OB/T9TXRaDYpe63HaqC0UOAxI69/wDD86wlLqdVOHQ7z4d6K6wxzSKcu29ga63xjKYLFIY0JZVZhj2GB+pFXvDtj9nhIA5AxVPXf3mo7GBbDxxbc++4/oF/OuPd8zPRtZcqLnhS2a20+OD+6AM/gK2dQ+UROyZLEg/ic0mlw+Xac9TIf04qe9jJtkkIyAc4HYdKpCe5i+GIozDqVp3jnYY9iAak8Ou7RDd95MKwI9CQadpQ8jWtSAwPOEUoHtgqT+gp2hwtDrN5budyliw9gSpH9au5nY2/L8xHtmOTjKe4rmNVsla9CsmVnjMbZ9RyP5murmUxKHX76cj39qzNWhEkYuP7rCVff1H5E1ElcuLseSXts2nai9ncFvs04KKfT2+oPI9qy723Aj3uvzKSrjtj+L+hFen+LNJhvLIsQfnAIdeqnsw+lee+ex1CbTZ1VZ1UMPQsO49mGf1FCbFKx51qlotjqhWVM21x8vHv3/DrWDNE0FzJATkZwGHrXfa9ZfbLaeBU+eD5kJ67Ox/A5U1xtxGZbZJ+6fu3z+hNdUJHDVhroUZFUoNwyAcH6GqwHVW5K8HjrVxwJBnHDcH2NViT9/qyHa/uPWt0crRLp7bZNoP3PmU+1fb/AMCNXOpeA9PR5RI8ceM7s4KnBHt2P418PqPKYSDIK8fhX0z+ylrbyQ32iSciF/OjPswwf6U1uS9rH0dRRRWhkFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAB7UUHtRQAUUUUAFFFFABRRRQAUZoooAKKKKACiiigAooooAK8N/al1J4vDcWnpKI96gt3Lbmxj8lP517lXyp+1Nqbf8JN9lVsrGsYHPQhScfm1TLYuO54e8SwQPJLIAGJOe59BWPLIZpPkXEQ6+rU3ULySaTy2Ix25/WpImVY1Tk468daLaAXLeLzHRQOnFXbCLzbx8/dTp7e9QaY3lb5XGcjitaGBrXTWuDgGY9T6VlJm8EOspVzc3HGIvkj/r+hrvvh9DbQW8V1cOnnSPvcegz/8AXrz630+7mNrbRI7iVtzBRnOTzXo+m6HqEafJauFUdxyfpWE7HVScux6tFqumwQu7XKKFHPsKzdou7yG5MgJEhkZfUk9PwUAVwE9hrs4EaWrhc5ztohk1mwkEPlyEswJJHP8AnmsuVWN1N3PXrOcG2CqeTIcfXNX5s7FQ8gBAc15/o+pXUUTC4Q4Zwwrt7C5F3EJOgY5A71JrdGXfE2mu2crnCtvt2PZg3zL+qn86gvp2tPEdpcklY3/dSEHAOeh960vEdt9osTKuQ0REgI68HNZGqqdQtYJkU5hcNgdx/wDXBpFKx2G8TQq+e2RWNrN8kJRHYKP4h14xzVF9UktrURorMQvf9K5W80/WdRmadyyq3Qe1UjN6HQSa/ZiIwFDIEPVecr1FeZeLJ47uUzWYaOdCfLc8Ee30711mn+FLmRXLv8zfxNV2TwKWiC/aAxPXiqvFakWk9DyYazuMbTxAXEZxIB0ZD94f1rD8SW8Vrd74G3W10MEjoM9DXrOrfDcq3mwyqz44yuPwzXAav4Z1Kz3wXMJaEn7w7VcXG+hjOMrWZxluhTcjketUZyYr1nxlW4I9Qa2LyF0mVGxlRjd64rM1BciJhz/C1dEWcc1YfGPnCZyj8AmvWv2cNVk0j4hW9nKG8m6DxkHuQpIPv3FeP28yIRDM5Vc5V/Q12fw21R9K8d6Pqk+x44rgZ3MVHII5x25qzNan3tRTIW3wxuP4lB/Sn1oZBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAAaKRu1FACmiiigAooooAKKKKACiiigAooooAKKKKACiiigBe9fD/AO0RqE1/4+1GEgJFBIUTnJb1P/1q+0tWmkjgEUDiOWXcA/8AdAUkn9P1r4G+IvmL4rv1mlaRhMxZ5M5ck5zz9aiRcTkrK1ElwC68Z6HvWhHB5srdiowBWfJdHOIxjnINdXY20E1hDcpt/eEgjuCB0/OpbsaRjfYpabB5ky2wGWbgcd67210CW5MdlKm1VCqM8596xfBtmh8U2olXggsAfpmvaLGyUzeZtHTj2rlqzs9DtoU7rUq+G/D9vZybzGCVHB9OK6d/stlbtLcOkadSztgCs67uJNPjLLE0hbptrzTxLPquuamliS8EJPzyHkgZ/hHasF7zOt+4tj01vFXheJAsuqW6sffrVuwbRb9ftFheQXYHP7tg2K8V+Jvha10i10hNPEpWaNnlmLndIwxxn6Vx0LzvdafFodtf6TdRRKsrvcl/tEu7llGBtB/u810ew0vc5PrLTtY+ojp8TY+QbVq/ZxiEBU+6vT2rnvDd/cxs2k6iwN3bry//AD0X1rpICNwPY1zNOLszsTUldFmVfMj24yM4IrCjt2t4fJQZeL5T/tJ2/wAK6eGPK59qrzwICWxyR1pvuJPoYtjbBl8wxcnrkZq5IYIIyZSiKBkljgAUkjrbguP0rz/xbDf+J7HUXtpXS3toZPLjjODNIo/kP50QTk7IJy5Y8zNvUfiP4Q0xmt3vxNKvBEC7wPx6U7T/AIheHL1v3U8g44GzP6CvnOzjMel3dv8A2FaXPnzI66hIxM0ajqqjPQ969P8ACOg6fP8ADoS3sKiczv8AZpF4cLx0PXGc10yoxSvc44V5OVrHr1nqFlfwGa2mSQHjg8g1k6xa29xG6GMMzcdM1w/hldeS4S3YpPHGAVlb5WI9CR1/GvRrK2lePzJwA3oK5Hody11Z434p8MJBBNIihXPIBHp0ry0QZ3o4yQeRX074k09ZonJXoOfcV893kCf2hcBQcByMD610UZvZnHiILRo5tkA3qVDoeOeorS0GcwXtuJFysThhk54BzVfW/Jt0jXkeYdwK9cD/AOvVOyvPMb5cB1OevWutao4WrOx+i/hu/i1PQ7K9hBCSxKcEcjjpWlXmPwA1Z7zwRZWFyNksMIeI5yJIiSAwPsQQfQ16dWpi9GFFFFAgooooAKKKKACiiigAooooAKKKKAA0UGigAooooAKKKKACiiigAooooAKKKKACiiigAooooAzfEPy6a84ODHxn0DfKf518C/Fbzx4uv2kYkmQrlhgnAAzX6B6mglsJ4zxuX8q+BfilHG/iSZo1A8yWQ4B6AHA47dKiW6NI7M8/H3uSa674eXMc2ptpVxkxy/vIjgcOByPxH8q5p4wrdPapLGd7G7hu4+HjYFcfWlKPNGw4S5ZJnqGghY/HFlEmdok2fTg17tp8QC4xXiXh6BZtSs9YjfKLMsnTqMjn9a9409MjNedU1PYpeQslssq4ZM1kt4etJLgyuuGPQ+ldZDECMYqVrVGXBGahI2OC13wn9usVtXuVni37lWRtpQ+oI6Vm6T4H0nSr5LzdLJcRcxsZC+G9eeK9Gk02Nj95gPrTU02JW4XJ9WNaqUjNxg9Wc5ZaODfw6gZpmmiYn5jwwIwQeP8AOK6OOPB5HFXFt1ReB0qFsjNZy7safRGjYruHtUF6vzGptM3EEU265bGKbXukL4jMnthPEVPQ5Bx1rAbSYLTZFE04CDaD5hFdhCnr3pstqH+bApxXUrm6M82k8A+H7iZn+yKjSuWYsW6/QHFblv4dsYreKN28xYhhI1XCr7D2rqBYwMwJTFTJaRr0WiTbGuVbGDZ6aiPvCBfTHatcKAuKt+QB2qJo8VFinqYWtRqImyOCK+cmRP7UvjtLCOR2wfTJr6U1wZs5WH8Kk188eJ3j0bT7mVgvnSqQH/vMSeBV0+xjUtu+h5j4gvxd6i+EAjiAjQY4wOCfzzVFCpZDGCrA8YNSXAMsfmAcrw3v70kEZWQcV6VrI8du8rn2n8AbhZ/hz4cughFzZ3Uli5C4yhO7+TA5r2evE/2YwJ/A8auoxDeSTDHQsVVfzA5/EV7ZVR2JluFFFFMkKKKKACiiigAooooAKKKKACiiigANFBooAKWikoAKKKKACiiigAooooAKKKKACiiigAooooAr6icWM5zgBCSfTivgn4qQrD4quRCx+QmT5l2kM3XK9uhr7w1qZYNOmkcBlCnIPQ+2O9fAnxKu/t3jLWrjeSPtBjAxjaF4xjt0qJbmsNmcnCpll9hzTbgAMBjpVuzH+sYdsiq8oDAk9cVS2IZ6R8J777TaXenO48y3UvHk8lGOCPwP86+hNDcvaQMe6Ln8q+NvDus3Gh69BqMHzCM4ePPDoeq/5719YfD/AMQWHiPQUv8ATmfyUcxlXGGUjnB/OuGtBp36HqYaqmknudzDVyNQcZrOtn3YFaMWMCsEdjJPKU03y9vapcgUjHNaGTKsvAqhM2OPWrd5OsSkmsnezzAkcN0rKTLSN/TMEA+1R3RHmfSpNMU4qtejDFs1TfukW94mTBwR0qwgzWUlwYwNw61oQSBhnNEWNomVRS4ApdwxzTc1pYlCN0zVabmpZGxVKaTArNmqMXxRM0Oj3jpy3lkKPc8V8tfE++Nzr/2DeNlqnzKOgc//AFsV718YPEv/AAjPhV75EWWeaVYokbpuwTn8OtfKLzyXF3Pd3EjSSSNudm6sSc1vQg78xw4morcqHqSFO3uKmhTdJnsRmmpgx5xyDUsfOV6D19K62cCPsv8AZieM+BSkZztlGRgfLlf/ALGvY68J/ZWlz4cvoghBVoyWLZ3feHTtXu1OOwp/EFFFFUQFFFFABRRRQAUUUUAFFFFABRRRQAGig9qKAFpKDRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBy3xB1hNF8O3uoSAGO2heXB7sB8g/762/hmvgnWUYXJDPveQ7y3qzHJP619b/ALQ2qfZfDsenKwDatOBM2fuQRjdj8cD8zXx9dyebdu0Ywp+VR6VlL4jeK90ZakgMV6NkD396iYZD54xVhQMqqc7cZxUcwBuWjHTFWZmOwPm17d+zfqhV9V0fdjO24Uev8J/pXirL+8x+NdX8LtZGg+NLC6d9sMreRL/uvxn8Dg1FRc0WXSlyzTPsG1kAArViYbc1z1nJkDNakM3avOR7NzUVs02Rxiq3m+hpNxdufxptisVLxDJIit0JzmmSKFkXPGOlP1VZZIsQMFkByDXPXE2pswDSD5DnGMg1Botjt7CURLz/ABCq96VJJPesPT9V3w/vDtZeqseaiu766umxbnaB/GRkD8O9U3pYjl1ubkkSG1O/rjiorYyLgsCM+tZennVJnKXMhaP+8cA49gK3sAqAenakU9CaOUEc04yKapswWmtLgZqlIhosSuMEVnzuORmo5pyeBUMjEocnpSbHc8B/aU1Rn1LS9FDfLHG1yw9ycD9Aa8UU9VHrmus+KmuDXvGmqXqPujjf7PEf9lOM/nmuUj+VT6kflXo01aKR49WXNNs0LVcxvn2xSIx359e1WdOAjHPPf8DUMibZ2jBznpVszR9Pfsl6nCH1DS2KiWSMSLzycH/69fSVfEX7PutnR/iBpx80JFcSiCYH+JW+X9CQfwr7dpQ2sOpvcKKKKszCiiigAooooAKKKKACiiigAooooAD2ooNFABRxRRQAUUUUAFFFFABRRRQAUUUUAFFFFABTJv8AVlc43fL+dP7VHMu5os/wvu/Q0AfMH7QWqrJrGrRMRILNFtogV4SRySSPcIoH1NfO7DahlOcDOB61658adQWa5vpE3j7Vq1xKQx5IBKj8MAV5DM2Ml+VTr7n0rHqdD2BmEMQQcyScsfSo7h8mOQdWNR73kZnkOWf+VIcs0YPQZqzMjkXJyPQfzqKQEMSDjnIq4y/KDVaflMj1IqiT6m+E/iZfEPhS1mkfN3bjyZ+edy9/xGDXfQtla+SPhL4vHhfxCv2lyLC7xFcei8/K/wCHf2r6ssrqKeJJImDK4BDA5BFebVhySt0PWoVPaQ8zRUmiS6RGVCw3H3pqn5eaxtY0w3hDCaWFhwJIm2sPoaxOg3lmDKTmotkbHOBXBT614g0xmglVLsKcb1UKxHr6VA3jMooN0lzEMcnyjgflVG0aM5ao76ezjMuAAM81digSNF+Qc159Z+MLYRl0v0A7bnA/nTv+E0tjITJf5IOCEO4/kKeg3QkejLsC8ACkknVFySPzrzz/AITa5d9lpbSz54BMRUfrircMmt680cUjrY22cyeVzIw/u57fhQZyoyjqzsRcxvkA5xTWJY47VQtNPFphELEerMSf1q8zbFNQQMYKvavPvjB4qXw14Zk8iQC9u8wwLnnkct+A/pXXaxqdppenz397OsMEKF3djwAK+SfiB4sn8XeIZr9tyWkQ8u2iP8Kep9z1Nb0Yc8vI5q9T2cdN2cwSWc56knJ96kt/vYb6fjUC5zkdjV2KM7wP7/I+tegeWWbd2hG1+i8N9D3pbgkBZFP3DzUssWFWUj5GGCaghP3om5xx9RQxrsbfhW6+yaxZ3JZkG/Adex7frX354J1X+2/CmmamWBeaBfMx2ccN+oNfnfEsiqFA5iYEHPUV9u/ALUFuvCP2YKUVds0Ybg4dRn/x4N+dRHcqXwnp1FFFamIUUUUAFFFFABRRRQAUUUtACUUUUAB7UUNRQAUUGigApaSigAooooAKKKKACiiigAooooAKiuTiBm/ujNS0MAVIIyCMGgD4j+Lrk3ohRZHEDsxZgMLliAOPfNeT3ALybP4V5P1r2T41Wdxba1qcLRuDbXhhUlT/AKo/vAc9MEvxXjrDG4/7WOKxW50y2IkBMuD3OPoKslAkeR15FLbw4mDH1qWXaYyO5OBVmRWbGAPWq0gBiP0JqzKR5wA7Amq0xxG3bCGqJM5ThsmvdvgP46mlZPCuosWMak2kpP8ACP4D9O1eDnk8V1Xw4kkj8YWpiJB2seO3FZVopwZrQk4zVj7IgckcmpWOfeuV8O6wbi32TnEq/ka6WKRXAOa8tM9m1jN1HTo7jJ+646H1rBksWSULLF93jpwa7UorqTVWSAnjGao6aOIlTfkcxJp+lSWuyfS4JG8wHdjnGeh9qnFtp1vHiz06KFuxHPr1rZe3+YfJ+lTR24Vv9WM/Snc6fraXQxbCwlnYkx7FPViMV09jax28QVBjH60RREjJH4VPjFBw1q0qjuyJyQ2ao3EoRWkdsKKs3MqIDkgcVxfiK+e5RreFjs/iI7+1Q2ZpHjPx68Y3Wp6hDoVsxj0+NRI4HWVs8Z9hivKrfnj1NdN8T9x8TsShCiNVViODjriuYtwc/rXqUlamjxqzcqjHw8SgN0Y4NaaxsYRt+9GcgVQZep61q6bIroUdjkrwf7w/xFaGa7Fm3Kz2rpnlhuA9azOY3IxyOM+o7VIjG3lKg9TvQj9RU96FKJdRDgnDL6Uhk2nl5HIQjLrtIPQ88V9c/s0NL/widmXbO7z0xnOArIR/M18g6S+y7j5IVu4r7C/Zqt3HhO2m2tsH2gqSegaRQB0/2CalfEW/hPZ6KKK1MAooooAKKKKACiiigAooooAKKKKAA0UHtRQAUUUUAFFFFABRRRQAUUUUABooooAKKKKACiiigD5t/ag0aZ9a0/UIUJgvIGglO4hVePDBjjr8pPX0r5qkt9kjRkg46Gvtf9oLSzqXgeR4Q5nspBOoTPIYFG6exNfIeq2T2d1mdSAygoxHBH+RWLXvHQtYGbcbE2lRjgVWuCEZR1wMmpZnDOmTgdT7Vm3k53Mf+eh49hVohhEfMkeYdCdoqteOGV2HAJwPoKmZvs8IUcM3AHpmqExMrCNPuimiGRxqWOVHT+deteBvDUukPpl7dRYmvY2kGey44H9fxrz/AEbTjqOqadpdoC0l1cJEPXk8n8s19VeNvDUlteaHcW4xbW8LwBR24BH8jU1l7jZrQ/iIyrOJlAKDB7V0FhqB4Rxgjg1Vt4hsH0p/kkHdjkV4qdj3Hqjp7eZTjng1fjVT8xHWuQtrxo2CScDsa6C0vAyZz+VarUjY0/KQdutGxT2qp9qz0Io+07eCasC42AOMVQvbpYULE1Dc36qp56Vz95NLdyHkhPSolIEiPUb+W5YomcHqaz5oWWFjjtWrBaBV6c0y+ixCQPSsizzCbwzH4qi1zSJVVbuNRcWr91fp+uMGvDxBJDO0MyGORCyOh6qQcEV9f/D/AENJdevNQXJZLYRv6csT+fFfOfxStYofHmrvCoXdcsdo9TjNe1T1pJniVlaozkHQpKIyPvCnwqwJVTgjDr7HvU9zj7NHL/GrY/So4+HBU/eUiqRkwlZZFyBhlO4VJayjfscfuZBgj2P+BqByFfcO/OKaGIUjurcfSpKTL1nGY7nyeGZWA+vPavun4FWrW/w605nHMgLA4xuGTz+OTXxNodp5t/ARyZJUXn0JANfoVoVjHp2lWtnEgjSKJFCjoOKI6u456RsaFFFFaGIUUUUAFFFFABRRRQAUUUUAFFFFAAe1FB7UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAGNr+nw6jBeW13CJbZ7Qqyf3id1fCnjK7Vr+VYjut0JRDkkAdutfb/AI91uPQfDt9fE5kELBVBAJ4PevgbXLgOxbpGGLdfvHPFZTeqN4fCzPuJVWIg5Dt+gqgrLkzzfdX7oqCSUySM5PyioppC5VQOB0WrSM2x8kpkcsx5P6Cn26Etgd+pohgONzdTVy3Ta4xW8YdzNyPVf2dNCh1DxzJfTAFdOt96Kf77HaD+Wa+qtb0o6tocsEX+uUb4v94dB+PT8a+eP2X4w2ta4cfN5UXPtlq+n7LMYAJ60VIp6McJOLujyuxgBjBxj1HcH0qy8Ax0rd8UaZ/Zuom9hXFreNuf0STv+fX86zgodePu14E4cknFnvwmpxUkY8luR82KhHmRNlCw9cVtyRA1XNv3xUGiKkcsw53E59abLJO5x5hH0q4IcdqeIBjpT1HoUFiLcnJqeC2+bOKtpDz0q3HEFFCQmysIcdqqahGogYucKoya1ioA54qfQdLGq6oJJBmztWDOOzv1C/1NXGDnJRRnOahFyZf8J6W2ieHmlmUrcXA8+RT1GRwPwGP1r48+Kci3Hjq/uIyNr3GSPevt7XZ/Ls5mVdxVTxXxB8VrT+z/ABlLFv3MR5kg9GPNezyqMbI8NycpNs5i5w1k+eCHBH61XtclgR1U9PY8VJMwa3hXncxLH6VUt3KyoQf4sGoGTXKFZmUciniLMJbk5JqzNbszbwME8mp4YVaLyx1HFDGkdl8ItNfU/GXh20MZKyXcbOT/AHN/P/oJr7xPWvlX9m3RobjxJb6ky/vLLoo7Agruz9SOPevqqiC6hUfQKKKKsyCiiigAooooAKKKKACiiigAooooAG7UUHtRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUjMqIzsQFUZJJwAKXpXkXx7+IcPhzQDpWlTwzateHYwLAi3jHVmAOcngAd+aPQEcF+0F44tzafYYpw17OSBAvBigz1b03du+Oe9fL2o3L3M5JOFznaK39bvTf3kt3cTS3NxMxaWeQ/NIx7msfy13ZAAFOFGTd5FSqJKyM3ypZTjG1ewq1BbKvJGT61aWNRn3p2yumNNIxcmxgTFPiQbqdiljB3VpYk9n/ZnuvK8X6jaA/6+1Vvyb/69fU8YyuRXx58BblbX4maaGbAnSSL6nbkfyr7Etfmjzisam5pEluLWC/spLO6TdHIMH1HuPeuBv7C40q6NrPynWKTs4/xr0OPiotU0631WzNtcDvlHHVG9RXFXoqorrc66Ff2Ts9jz6Mbh6UpTnpVm6s7jTrk29yPmH3WHRx6imgD868ppp2Z7CaautiDyQaXy/arIUdKTbz0oAjWIA08qAMU8EAYqBzJLMlvApeVzhVHc0Bbqx0VtNf3SWdv/rHPJ7KO5Nd1aWcGm2KWsA4Ucnux7k1Foelx6Xa/Nh7iQZkf+g9qsyNnJNepQo8iu9zyMRW9o7LZGbfDfbupHUZNfD/xonS5+JWrNb8rvVfx2ivtrXXEenzuWwqoSTnGeK+BPFGoNe+JdS1GQ5eed3/Xit5bHOildSL5xwc+XGEFZ6NiUA9OKcHJbLHhjzSSLg7sVBRtrcs9sQByBjNS6bMpiLuw3ZJ/Gs21BkTYrbXHK+9PjHlRkgYzx9PaouWj6m/ZLAu7LW3KkGB4grcEcnJ/9BFfRtfB3wv+I+t+Bd50ZoXiuHBubadNyvjpz1B5PINfSvg346eFtWSO31oPot2QMtId8JPs45H4j8a0gm1oRU3ueuUVBZXlpf263NjdQ3UDjKyQuHU/iKnpmYUUUUAFFFFABRRRQAUUUUAFFFFAAe1FB7UUAFFLSUAFFFFABRRRQAUUVz3ifxt4V8LqTrmt2tpIOkO/dKfoi5P6UJXA6GivAvFH7Rum27NF4b0WS89Li9fyk/BBkn8SK8m8UfGLxvrytHLq7Wdu3Bhsh5Ix7kfMfxNaKm3uS5H1x4j8YeGPDaFta1q1tG7RF90h+iDJ/SvKPE/7RGjWgePQNKmvHH3Z7o+Wn/fIyx/Svl2e+lldnd2Zm+8zHJP1NVHcseTWqpLqJyPSvFfxj8aeIVeKbVns4G/5YWI8lcehI+Y/ia84uruadmZ3JLHJyetQ5pCM81qlbYm5CwJNNCHOKnYYpqLljTsIaF707tilbjpSdRmgBhpU604ihetAG/4N1D+yvF2i6ixKpBdxlz/sk4P6GvuyyI8hec8V+fi54C9e3tX3N8PdWXXfB2kaquMz2yb8dnAww/MGsqi0LidQlTLxzUCmrK81gWVtRsLfUrbybhenKsOqn1FcRf2k+nXHkXC9fuOOjCvQulQ3tvDcW7JOgdSOc9q5qtFVNep00a7padDz/cMdaRmUCrtzpbZ+0WDfabZs7WUjP/1/qKqmxvmcJ5DJu4y/ygfia8505p2aPVVWm1dMhj3yyrDGpZ3OFUDrXZaDo8enx+dMA90w5b+6PQU7QdMtbW1SaN1ndxzOOc+w9BWowruoYdQ96W552IxLn7sdhjkmq8g6CrLCq1w2Oneuw4jhfizqq6X4N1GfftYwsEPvivg24dnLM3U9a+vv2k7to/BrxBgGnk8pB68ZNfH8wwCKiW5S2HAAxFuw4p8XzgK3XoPeo4TuUAelTwqCdrcZ6H0NQUiSJTE4U8dwavSJ5w8xQAzDBHYmo1RriPZtHmoc/wC97fWr+mojKxfle4x0qGupouxmWBZbhlIILcFT2IrWadtoBzx3qO8tWjYzEZK/MGXuv/1qltVEw47evpVwnyvUUoXVjY8PeKNa0KbzdJ1O6sm65glKg/UdD+Nev+F/2hdftBHFrdnbapEOGkH7qUj6jg/lXgskTRtjpjpTdxzzxXfZSRyapn2n4a+NvgbWSsdzeS6RO38F6uFz7OMj88V6NY3tnfwC4sbuG6hPSSGQOv5ivzsjmYHGa1dI8Qato9wLnStSubCZf47eUpn646/jUOkug1I/QWivlDwv+0J4p08JFrNtbazCvBZh5UuP94cH8RXrXhn46+CNXKRX80+izt2u1zHn/fXI/PFZOnJFcyPVaKhtLq2vLdLm0uIrmCQZSWJw6t9COKmrMYUUUUAFFFFAAaKRu1FAC0UUUAFFFFAC14v8VPjbbeGNRm0TQLSLUNQgbbcTTE+VE3dQByzDvyAPevSPH2ujw34N1bWgR5ltbsYs95D8q/8AjxFfBF9dSTTySSSNI7sWZ2PLEnJJ+pranBPVkyZ6Z4u+OPjPXoFtYbtNHiVdsgsMo0p9SxJI+gNeYTXcs8rySyM7ucs7HJY+pNUnYmRvpTQTW6SWxFy0W9ajZqjye9LiqEITQPWgilWmgDrS9OKWjtTEMamxZPPrRIVVSXOB609NpHykEe1IYpANMIxT+1Mf0oAYfalXngUEinD2pATxYCYr6q/Zh1MXfgi701ny9hdtgeiuNw/XdXymp4r3P9lfVBB4s1PS2bAvLPzEHq0bf4Mama90pbn0yvHFWY+gphA605SAa5TQlXJ6da8O+JvxgtbbUp9A0SNL2CLMd3cLIQHfoY1IHKjue54FW/2g/iS3hiyTwxo84XWNQjJnlU82sB4yPR25A9Bk+lfMUUyrwMAdq6KNJS1kXFdWexWPxh1fT7c2tnpthDbDlYyZDg/XP8sCoG+LfiB2YzQ2bK/8Me5CB9ck15aW3DOaXFdnsYdi+VHrPhP4vS6JrUfm2JXSZ3zeQrMzlf8ApomR94dx3H4V9MWN5Z6jp9vqGn3EdzaXKCSGaM5V1PQivgyWREj+brXq/wCzf8QpdM1t/COpyMdJvCXtZGPFrL3Geyt+jY9TXLWoqKvEmUex9QOcCqc+eTVmQ8j2qvc84X+8cVymZ4F+0whk0awdnKqhcqO2TgZ/U18sshVijDrX0/8AtTyRJbaRalwJJWeQDuFXjP5n9K+aLn58OB0GDUT3LjsUo49jfKcjtVuNA4A/OosfMCOc1YhXEgYEAN1z0qCrE8WU2Mx5XAJ9R2P9KvQP5dz5jnlh8w/rUbRBRsdcZ4654pQhltwWPzRnFAF95A8piJ2jO5D6H0/EVBLGbRg8IyoJyo7D2ql53mKGHylflYe/Y1oWlysn+uHXIzUtFpltoBc2onhcMcZKf1H+FZUmN3IK9uOlT2s/2a8KM37ot+AqfUAjyEkbXHBOOv8An1ropS5dGZzXNqjPBwfWgk0uD3pvWu05RwbHFPWVl4zUWKXFJoDqPCvjPxH4Zm83RNYuLIZyY0bMbH3Q8H8q9k0P9ozU/OtU1bQbWaIAJO9tIyuT3YA8fh+tfOgNOtZsEnP8RNS4p7lXP0Q0LVrDXdJttW0ycT2lym5Gxg+4I7EHgir1fPP7K3iRpW1Pw3NIShUXcAJ6EYVwPrlT+dfQ1ck48rsWncKKKKkYHtRQe1FABRRRQAUUUUAeKftT6yLLwbYaQjfvNQufMYA/wRjP/oRWvklzuPNe3ftRawbzx+unq2Y9OtUjx/tN87fzX8q8QPJrsgrRRm9yGUbZV75BFOUe1LKowD6GlUVaJFxS45o5FGaoBMCg0ppCKADNFGBRQAjqGBBAIqk1oFO6J2jOf4TxVzdSGpaT3Ao+beRH5gsy/kakiuUlk27WVuu1hU5UHpTkQKKVmA3bTwKWmZNMCVRXd/BfVV0j4l6DcMcRyXH2eT/dkBT+ZFcGhJq7YXL2V5Ddxf6yCRZF+qnI/lQwP0IIIyPSqGs6gmmae90y73+7FH/fc9B/j7U7S79NU0u01GP/AFd1Ak+fQMoP9azbm3OpXUdw5/cR8RL2Pv8AjXGbI+Y/il4K8S3F7d+KLtjfSSMZLiRRyB9PQDj6CvLozlsHoDX3nfWEMlo6NGCCMEEda+SPjB4Lk8J661zaoRpl6xeLHSNupT+o9vpXTSn0NEzlrUhlA9KnZeMntVLTpBuANXL99kYA9M13xehZQKy3d0lrCpd3OFUc5r6A8D/DSLSNHjubhPMvpU3S56Kf7o+lYH7PXhS31CW88RX9uZFgYR22RkBupb8OPzr6NgtVWIBl4HauCrO7sQ5FLwdqc17pv2S7B+2WmEYt/wAtF7N/Q1sTH94M9hWfJYtFMt5Z4WVOSP7w7irZmi8n7U5xERuJPbHX+tc5D7nyh+0tqa33xCe0Rspp1tHD1/iPzt/MV4y/ySnP3HrqfG+qtrvijVdW7Xd1JIv+7u+X9MVy7gbsN06H6etXUhoKEgjh+Yr6c/h61bjjGRlflPB4plureWQD+9iPHuP8CK0NPIfeGA2sMEH+E9vzrkNyKQyGAow+aE46YJQ9DS2hDrKjMAeARTrjcIS55MZw3qVqlanyrsRk7snAI7jGR/KmQ0N27XZOgmX8mp9u4Xgjrz9D3qaZFN193G2T+fNRSJiY8dqTKRNdEMArKC2Oo4JFSW87Tw4fllAB9eKinYOqtjqBUULsswf+Fvlb61a2E9yfkMVzx2oxikkB3jntQ3Fd8NjlluLSN1o3cUlWIQnCk+gpsIxGpPcZom/1RA78VKFwAPSkB6P8BtYOk/EjR5S22KaX7PJnptkG3+ZFfbBr88NGuZLW8jniJWSJg6kdQQciv0D0e+j1PR7HUYiCl1AkwI/2lB/rXNWWzNIlyiiisCgPaig9qKACiiigAoFFYfjrVRofg3WtW3YNtZyMh/2sYX9SKaV3YD4l+JWrHWPHGuaiTkT3shXnOFB2r+gFcoSM1JcuzuSxyc8n1qD613GIsnzRsPahDlQaAaZEeMehIoAloIpR92kqhCAUuKTNLntSGNxSHIp2RSN0pgRM3NKqnqaim3KN/pzVheVBzweakAzjjFNbI/Gn4FIw7VQhrHimrT9vHJpoXBpDFXr1qZCBgnmotvfNOFID7B+DmqXWu/DDSIUDILcG1mkJ4ZUOAB+GK9KjRUhVVHAGMV4f+ytqazeGtY0guS9rdLMq+iuuP5pXuiqfLzXLPRmy2GMu5a4L43eHota+H+oRrCXnt4/tEOwZbeo7fUZFd+p6j0rO8V3dvp/h++v7slLe3t3d2B6YH86UXqM+EbVRHINxIKnDcdPrVvUGSRwqODngD1qaF2a7lQn7zEnPem6icSIF4weMdq9RL3TY+xPhVoEOieAtLtljKNJbrNIGGDvYZOR+P6V1cgwoFZ/g/U4NY8J6XqNu+9JrZCSTkhgMMD75BrSb7wH415b31MRAMLn0FcR8RNVl8P8AgTxFfBSUe3ZYiP4JH+Qfhzmu3mOImx6V4l+03q5tPBen6QrYe/uw7Ln+CMZ/9CK04K8kJvQ+YJSOnoMVTmQg5xVwjOc1Ew4IPPpXU0ZIq2kpS6UE8dK05CYJdyfcPykZ6jP+fyrJmTYwZeua1shrRNwyT8tcFSPKzoi7obI2CQT04I9QarxqBdRPj7uR+n/16bISMMSeVx+tODYYHtWZZdwpkklOOvH5Um0N83H3SMfhVaaX92m0/eY0ssuLNyv3sEfypgOhYNGB79faqyFt0g6A/oatW6bYAy9c/wBetQSgKpCHJJycVpGN9CGyw2M47gDNJnNEgyscn95efqKRRjmu2HwnPLcVQTxSsKXgUhPerJI5M7kUdzmpjjFQggzf7op+cmgCe1fZKG9K+1vgHqw1X4Y6YC2ZLIvav/wE5X/x0rXxErYbivqD9kzUw+m65pDNkpJHcoPYgq38lrGqrxLjufQFFFFchoI3ailPaigANFFFABXk37TOq/YPhubJXw+o3UcOO5Vcuf8A0EfnXrNfMf7WesCXXtH0VH4tLZp3Ho0jYH6J+taU1eQpbHz5Ljcahb2p8lMzxzXWZCg5qNTtlb86eKjf/WA+oxQBYz3pOppqnjFOGc1QhzAU3pSmk7UDDFJmlooERuAQfSorNj80R6oePp2qZuKrZ8u6Vx0b5TUsZdxSYzRuxzQCTzVCEamDJOKew4zTOlIY7p3oU03NOU5pAex/su6l9l8e3Wns2Ev7JgAe7IQw/TdX1arZXAr4a+GWpjR/H2g37NsRLxFkP+yx2n9Gr7kXqRXPUWprHYX+L614/wDtPeIfsPhGz8PwyYm1SUSSgHkQx8/q2PyNevgHIx1r5H+P+tjWPiLqCxybrewC2cQB4+T7x/76LU6Mbyv2LS1OCsH3TEnnmk1NisgYetO0+PHzetQ6jzJmvR+wadD6V/Ze177V4f1XQZpN0lnKLmJSeiPw3/jw/wDHq9lzubNfI/7PWstpnxIsImfEeoI9m/p8wyv/AI8or64AwCa86qrSuZvcbOf3Z9zXyn+0tqpvfH0eno+YtNtETHo7/M36Fa+q5MbBuOAOSa+FfHGqnW/F+saqWytzdyMn+6Dhf0Ap0lrczmYD1E3NStzUbfpXQZkEwBw3fp/hVvP+i9cc5xVSXpxV+4j3GCJOrdR7YrjrG1MqMpIw3dciq00mxDg8ZrTZlBfOOeBj0rCkbc8iqcr2/OuY1J45cqhzxzipN5Khc/xZNUY22x47qamhk3cU0tQvoayvmMkdsL+eTTCPTvQn+pJ/vMB+lLmu2nGxhN3JIzm32Hqp4oHFMXin5zWsVYhsQnHNDHjNB64pkrYU+wpkjImyXb1NSZqCEHyx781KM96Bj1PevZP2YdXNj8RorRn2x6hbyQkerAbh/wCg140vvXUfD7Uzo3i3SdTU4+zXcbn/AHdwz+mamWqsNH33RRkHkcg8iiuE1A9qKDRQAUUUUAFfEHxw1Y6v8StfuVfdHFcfZoz22xgL/MGvtbVbtNP0u8v5CNltA8zE+iqT/Svzy1e5kuLmSeVsyTO0rk9yxyf51vRW7JkUW+tNoznmkzXQZjqjn+5uHY07OeKZKCY2A9KAJIzlaeDUMLZQGpBnNADjR2pKGbFMQLnNOY+lNHNGKYCMM9aguE3IQPwNTmmtytJgJav5sQY9eh+tSjIqnD+7uGTs/I+tW88dKExjmOelMx3pelBNADCKctGR2paQEiu8eHjOGU7lPuK++PDF+mq+H9M1KM7lu7SKbP8AvKCf1r4GU9q+wf2ddU/tH4W2EbNl7CWS0b6Bsr+jCsqi0uXE9B1W/j0zTbzUZSAlpA8zE/7Kk/0r4Tv55Lq5kuJmLSTOZHY92Y5P6mvrr443v2H4a6vhtpulS2B/32AP6Zr5HkRS2M1th4+62bxJ7NSEHpVW+Q7z6VcjO2PANVbgMWJ7V2taFj/Dt8+l6zZ6hEcNazxzDH+ywP8ASvvJZFkgWVDlZAGX6HkV8BxoRn3r7d8B3p1HwP4evC2TLYQkn3CgH9RXn4iOzIkVfihq50PwBrmoq+2SO0ZIz/tv8q/q1fDp4GM9K+n/ANqbVza+EtM0dG+bULrzHX/YjGf/AEJl/KvmEmppqyOeW4wntUbmkcmmNmtLkjrdfMuEQ8KOWPoB1q1NMqySTgjJG1BVLzvKjIB5f+VV5JdzZzyOa4asrs6IKyJrm42RsS2Tg/nWTA3z47McUtxI0jYzxUaqR8w7Gsyi2YS65TIboRSW5KnnqvUVZtWWROMZHBFTS2rAiTBOPXriiLsxtaEseSmc980/GBxTYomZSYiJBjJUdRUhB44P5V3QmmjnlFoaM9PWnfSm7TnmnDFaogcB61Xuj8pX14qfNV5/mlQZ96GA9RtXFOqMEmnrSAeDVi0YiTAPWqxPNSwNiRT70AfoB8P9UGteB9D1QHLXFlGX/wB4Lhv1Brfryr9mnUvtvw1S1ZsvYXUsOPRSQ4/9CNeq1xSVm0bLYDRQaKkAooooA4H476n/AGX8LNbcOVkuUW1Qj1dgD+ma+Hbw7pj7cV9WftYamYPDWiaUrf8AH1dtM6+qxr/i4r5Qm5ckmuukrRM5bkdH4UlLmtCRO+aG6dKXjFNbpQBFbfdI9DVntVOFsTOv41bzSQBzS0maM0xD8elIQcYpATSk+1UgDtzTSM049KSgCtdKQocDlTkVZjZXRWHQjIpjgsD6VDanYzQn+HkfSp6jLfWkxSZpQ2TTADRzxQeaTPpSAeK+if2UNVHk6/ojNyGju0H1BRv5LXzqGOOlen/s56mbH4oWVuWwmoQS2zD1ON6/qlRNe6UnqeuftNXZTwvpFiGwLi+Ln3CIf6sK+ceC/Svav2nNQ36toOng8RwTTMPQllUf+gmvFosDPv0rqw69xHTHYk4xgdKidR1PNTYz0pJV4yK6WiiuR6Cvrf4IXBufhfoWT/qY3i/75kYV8lYxnnrX1B+zpMZvhtApbCxXc6Z9Bv3f1rixK90mWx5H+05qovviDFpyvuTTLNEIz0dzvP6ba8gYgVveONV/tzxhrWr53C6vJHQ/7IOF/QCsBxms0rKxyt6kMh71XkkwDirDDjFUbk7eKmewR3K7Sksc801nxn1qGQndmkPLYzXDbU6LkkHzZz171MsZBIP3TUY+RgfXrWnZxrLlGHWlLRjjqUF320okOdh4JHr610dpdJLaiN1y6eh4x7f4VSazePMUigg/y9agtc2svkzDv8vY/SjcexekiMU+6AZHXA64qZLiOT5XTD/XrUDHGGB47U0ssh+bAcVrBp7kyuiWVBklcVDgilZ2BCkfQ0BsiuuLZzsaelRI2+dj6DbUrn5arWp4Zv7xqhFhhzQOBS49adxQIByOadH94UhoU4NAz6Y/ZO1IC613SS3+shiuVH0JU/zWvouvj/8AZt1L7F8SNOjLYS9hmtj9du8fqtfYFctVe8ax2A0UHtRWQwoopaAPlL9q7U/tHjiy05T8thYAkZ/ikYk/oFrwV+vNej/HjU/7R+JmvzBtwjuBbqfaNQv8wa82Y5rtjpFIye4UjE0o6UnsaoQhNNJ4p59KjfjigCvn/SB7iroORVCQhZFPvVxGBXrSQMkoGKbnikzTESZxQDTMk0/IoAWjIAppOabznNMZIelVphsZJR1BwfpVgcVHKAwIPSkwJAQQMd6WoLVuCjHlOPwqfjvTAXPpS8UzPNLmkApFavhXVG0TxNpOroTmzvIpTj+6GGf0zWSDS4BUj1pAj2z9oRxL48QBtwisIgP+BMzf1FeYJwa1vEGuv4k1KPUpGOfslvC3+8kSq36g1mMQMCu2mrQR1x2HAkHilfNICFXmmnmtChh969l+GPiJ9G+CPii6jbDWck4jP+26qq/qwrxmUgIcHpWvDrYtvhDd6Kj/ALzUNdDOB/cjiVj/AOPFa5q6ukZ1HoceoCoFz0GKQ0vGKT3zWJzEbCqU0e5varzc9KjYA0mrgY7xfNyOKPLA5PFaDxgmoZY+QgHXr9KwdNFqRFtVoj69qksZHAC8lkOV9/an+Vt+Wo2jYNuQkN6iodPQtS1N5JluYQ6ttK9/eoJAl5Hsk4dOFI61npKwxLCACeXj7Me/41ZDbsSxMeR0NYNNM1TuJh1GCc4PI/rUrKJUBBw6/rVcyhyZNuHB5FPj+X6GqSadxNpqwuTnJpQe9OaPjhqYvSu2LujmaEuG2xFvaorf5UUVHePwqD+I4qSMjFPqIsKc80veogakU0wHk0maRjSJwc0Adr8M9R/svxbot/nAtr+FmP8AslgD+hNfeZ61+dGlyskp2nBA3D6jkV+g/h+9XU9B03UEbct1axy5/wB5QawrdGXEvntRQe1Fc5YUy4mS3t5Z5DhIkLsfYDNPrI8YW+oXnhXV7PSkV7+4tJIoAz7RuZSBk9utCA+BfEl49/qt3eOcvczPMfqzFv61jtXsF58AviTLKTHp9ht7Zvl/wquf2fvib/0D9P8A/A9f8K7OePcyszyZT6UHmvWP+GfPiaOlhp3/AIHL/hR/wz78Tf8AoH6d/wCB6/4Uc0e4WZ5MSaYwyK9bP7PnxN/6B+n/APgev+FIf2e/id0/s/Tv/A9f8KOaPcLM8YmPOfQ1biNeqTfs7fFBxgafp3/gev8AhUkf7PXxPXGdO0//AMD1/wAKlSV9x2Z5WTQDXrC/s+fE7Bzp2n/+B6/4Uo/Z8+Jv/QP0/wD8D1/wquePcVmeT7qN1esH9nz4m9tP0/8A8D1/wpB+z58Te+n6f/4Hr/hRzruFmeVDPalJNesL+z98TQMf2dp//gcv+FOP7P8A8Szx/Z+n/wDgcv8AhT549wszyUGkPSvWV/Z9+JY62Gn/APgcv+FL/wAM/fEv/oH6f/4HL/hT549wszx5sxyCTsflNWBk16vL+z78S2G0adp+D/0/L/hRF+z98TggD6fp+4cf8fy8/pU80e4WZ5TzS16x/wAM/wDxM/6B+n/+By/4Uh/Z/wDiZ/0D9P8A/A5f8KfPHuFmeUcmnLyMV6p/wz/8TP8AoH6f/wCBy/4U5f2f/iWBzp+n/wDgcv8AhS5o9wszzfTpsI0fo1X15PJ5rvbf4B/EuOUsdP0/aR/z/L1/Kr0fwM+I38VhYg/9fq/4V1Qqw5dWdEHpqebnnA9KXHGBXpX/AAo34i/8+Nh0/wCf1f8ACnL8DviIDk2Nj/4Gr/hWntafcu6PKbxvLjYk1hwSSyR7Sx8tZGZV9CcZP6Cvab74E/EeaNlSwscn/p9X/CqEH7P/AMS44wp0/T8/9fy/4VhVqQezMqjvseVHpSZr1k/AH4ln/mH6f/4HL/hTP+Gf/iZ/z4af/wCBy/4Vjzx7mNmeU5pjV6yP2fviX30/T/8AwOX/AApf+GfviV/z4af/AOBy/wCFHPHuFmeR4wCx7darxgszSEdeR7CvX7j9nz4nOu1bDTsHr/py9PyoH7PnxMAwNP0//wAD1/wpc0e4WZ5HtNDD9K9d/wCGffiYeun6f/4Hr/hR/wAM+fEz/oH6f/4Hr/hRzR7hZnjxjwxHQE5z6GhXdcgjvmvYm/Z8+JZ/5h2n5/6/l/wpD+z38S+P+Jfp+R/0/L/hUNRfUpNo8gYeb+8Xg96Edl6dq9dX9nv4mKeNO0/HT/j/AF/woH7PfxMPB0/T/wDwOX/CpSiuo22eUK+5fpSFq9YX9nv4mA/8g/T/APwPX/Cnf8M+/EwD/kH6f/4Hr/hWqlFdSLM8Yu2zOo9Oanh5HNeqv+zr8UDMZP7P04gjp9vX/CrEf7PXxNUYOn6f/wCB6/4VKkr7jszyhaepr1j/AIZ9+Jn/AD4ad/4HL/hSH9n74mjpp2n/APgev+FVzx7iszyfdk09c16ov7PnxN3ZOn6d/wCB6/4VIP2fviZ/0D9P/wDA5f8ACjmj3CzPMtPOLqP3OK+5PgjefbPhboLk5aGFoD/wB2X+QFfNkPwC+JaSK39n6fwc/wDH8v8AhX0j8GfD2s+F/Bx0jW44o7hLqSSMRShxsbB6j3zWdRpx0Kje53RooNFc5YtJQaKACiiigAooxRQAtFJRQAUUtJQAUUUUAFFFFABRmiigAooooAKKKKADNFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUtJRQAUUUUAFFFFABRRRQAUUUUABooaigAooooAK8q+P+vaxoWm6PJpGoz2LzTSBzC2CwCggGvVa8X/aZwNJ0Jj2uJf8A0EV6OWRUsXBSV1r+TODMZOOFm4uz/wCCMXwp8Xmsxdw+Nkl3RCRIvOYFsjOOVxmuj+C3jHUfE+j38OtOr3emuqtPtCl1IP3gOMjaeRXLaha/GeLw69yNVs/sUdpvKwFBJ5e3PB2DnHvmtb4CjSl8B6jJYwyJe+YwvHkbdvYJlSvouD09c16GIipYacpcrd1Zx6eux5+Hk44iKjzJWd1Lr6Hpeja1pGtxyyaRqNvfJCwWRoHDBSexpNP13R9RvbmxsNRt7q6tSRPDG+WjwcHI+vFeV/sy5/sXW2Pe6j/9AqD4Oybvit41x90vL/6PNcdXBQhKtFP4LW+Z2UsZKcaUmvjudN8N729t5PEF3rXjKy1q1hIceTOX+yKC+d2QMcf+g12mma7o2q2c19p2p211awEiWaKQFUwMnJ7cc15N+z8itq3i2NlDxO6AgjII3ScGuE8dxz+C/E+u+GND1FI9M1SNBLGG/wBUrHOxvQjkf7p96654GNfFTpXtJWe2ltL7HLDGyo4aFW14u/XW93Y948Qa/p+seENXk8OeJrOCWGNR9vWbCW5JGCzDOMj+dHhHVItK8C2d74h8S2l9hmV9SE26OQlzgBiB06fhXPeIvD9l4a+B2paZp7pKPsqySXC/8t3ZlJf6Ht7YrjtQbb+zdYAck3QH/kdqyp4anUpqMX7rml0vt/WhrUxFSnU5pL3lC/lv/Wp7Be+NfCdiYBdeIbGIzxiSMGUfMp6Nx0B963YJobiBJ7eVJopFDJJGwZWB7gjrXh9v4D8Of8KYfXZ7Mvqracbv7WXberAZAHONoAAxiur/AGfZ5J/hzCrsSIrqaNM9lyDj9TXPXwtGNJ1Kcm+V2d/0N6GJqyqqFRLVXVj0ivKvj9r2saDpekS6RqM9k0s0gkaFsFgFGAa7fxT4t0Twu9omsXEkJvCRDsiZ8kYz06dRXmn7ThP9jaGR0+0S/wDoAp5dSf1mm5x0d99noGPqr6vUUHqreqN/4jXGpvo/h6Wy8YW/h2WRN0j3M5j+0ZVOmAc45/OvSI8+WmTuO0ZPrXhXx9w3h7waR/cY/wDjkde6W/8Ax7xf7g/lUYmHLh6cu/N+Y8PPmr1I9uX8h9FFFecegFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSUtFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUABooPaigAooooAK88+MfgzVvGVhptvpUlsjWsru/2hyoIKgDGAfSvQ6K2oVpUKiqQ3RlWpRrQdOezKDWTvoB01mAdrTyCw5AOzbmuL+D/g3WPCOm6lYawbSWO6kWRGgkLfw7SCCB7V6HRTjXnGnKmtpfoTKhBzjN7x/U8S0zwB8RfC+rXtv4U1myi0y8bmabBKrzglSp+YA9R1roPhZ4B1fwh4i1a91C8gu4LuPZHKrEyOd+7cwI4z9TXptFdNTMK1SLjK3vb6as56eApU5KUb6ba6I8x+HfgzxH4SHiSYmxmub8BrNRK20MC5G/5eB8w6ZrJ0X4Qzz6Xrsnii7iutb1Ekw3MbFhC2d2/JA5LcH2GO9eyUUnmFfmlJOzdtfTYawFHlUWrpX09Ty/TPB/i9fhjqfg7UrixllaMJYzLMxCruBKNlegxx1647UXfgHWZfhHbeEUltP7RimEhYufLx5hbrjPQ+leo0lL69VvdW+Lm+Y/qVK1nfbl+RyCeG7/8A4VafCrvD9uOmm13Bj5e/bjrjOPwpPhT4Zv8Awn4TGkak8L3AuJJd0DFlw2MdQPSuworGWInKEoPZu/zNo4eEZqa3St8jh/ix4Jk8Z6PbpZ3CQahZSF4DJnYwIwVJHI6Ag+1cNceAPiJ4ru9Pt/GWp2o0+yPWNlZ2XjOAoGWIGMmvcaK3o4+tRgoRtpe2mqv2MauBpVZucr6766O3c84+L3gfU/Ftro0GjPaxLYM+4TuVG0hQAMA/3a9FiUpEiHqqgH8qdRXNOtOdONN7Rvb5m8KMYTlUW7t+AUUUVibBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSUALRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAAe1FB7UUAFFLSUAFeP/ALQXiTxN4cm8LTeG72SH9/cXN3AgBFzDBGJXQ5B6qrV7BXF+NfDd7rnjDwdfxQxS6fpk12b4SPg+XLbtGAB/FknBoA4j49eOtXstJ0OHwZqbW0lzGuqXNzEASLPekajkHG95lx/umuy8T+PpdF1LUrOz8J6xrMWkQLcahdWwjjjhUqWwpkZfMYKCSFzj615xb/CfxbF4L8SaZdTWt5qDmz03SCZsBdPt7gSLuOOGIJyP9kVq+NfAnibXfEviQ32iW+v2+ooE0i7vNVeK301DHtKtbjqQ2WyAc5HIoA6/UfiTbfbLOx8PaBqXiO7uNMj1ZorQxxmO2f7jHzGXLHsoyazX8f6rP8SPDOk2Wi3w0XVtLku5GnjSJ0OU+ZgzBlEeSGGM5YYzXNX/AIL8RXGleH4tW8BWOtNYaRDaRNbaqLO9sp4wVJ89SN8bAKwA5U54NbWm+EPGNpqvgm91SSPXJbTSbnTNWuWutskZlZD5gLDMm0Lt7E9aANe0+KWn3MlreDQdVj8OXt0LO2191QW8kjNsVtu7esbN8ocrgkjsc1o+GfHUXiPxNqeiWGg6mItKuZrS71GRUFuksZA2A7ssT14HHGeteY+GvhXqenR6X4fuPBekTLY3Keb4gm1GSSOaBH3BltgwIlIAHPyg889K9R+HWg6hoKeJPt6xqdR1+7v4PLfdmKQqVJ9DweKAJfF3jGLQNS0/RrPSb3W9a1FXkgsLPYGEaY3SO7kKijIGSeScCuB+InxFv73wTC3hyy1jT7+XW4NJ1GOPyo7qxcyLujBZiu5wwCMMrznIrq/F+jeILXx1pfjbw9YQas8FhLpt3p8lwIHaNnV1eN2BXIZeQcZBrmZfAfifUNLu9RvYLSHWNX8UWWr3FnHPuS1ghaMBA+BvcImSQACTxQB6hNJfWnhlpbS3muL6GyLRQ3LBpJJQnCuRwWJABI714Z4S1+71i106+074q3K+OHeNr7w9rbJb2xcsPNgWExhlwMhSpJ4Hrx7xrtrd32jX9lYXz6fdzwPHBdoAWhcghXAPocGvIPFWg/ELxn4Yi8J654N0iK+Ijjl8StfpII9pGZ4owokDnHA4wT1xQB1+u/EiLTtY1TT9O8NavrseiIr6rc2Kx7LXcu7aAzAyOF+YquSB71Wbx7othq/ifVbnU9Sl0+x0+wuVt2hXywJw3liED5y7nAIbvjHeqbaT478La14oHhbSrLV4fENwt3b3lzeCE2U5iWNjKhBMi5QMNvPUe9Zvij4a+ItfPi5by4s5ptStNJNvOxKJcXFqWaQOq8orE44PGfagDpo/iTFBHqKa94Z1XQr2z02XVIrW6MTG6gjGX2MjldwyMqSCMim+HviZb6trGj2Nz4a1fSbbXomk0u9vFjEdztTeRhWLJ8uSNwGQK463+Hup3Ntrj2vgfTfDTzaJdWVuJNSe8nmnlTbw+dscfrxk8dMV2F74V1d7n4byxLCB4eDfbSX+6TaNENo/i+Yj8KAJPD3xIi1y8sHt/DGrpompzvb2WsbY3hkZSRllVi8akqcMwHbOM1Afipp4kN9/YGq/8IyLz7EfEO1Ps3mb/L3bd2/y9/y79uM1yeg+BPE0PijSr6Dw5Z+Gb6C+E2q6tpepstrqEIJ3KLQcAycfeA2nJyaytL+EupWNvH4dk8F6RfrHeH/ioLvUZGje2Mm/LWwYEyhTtx93IBzQB9DUlHA6dqKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKWkoAKKDRQAUUUUAFFFFABRRRQAUUUUAFFFFAAe1FB7UUAFFBooAKKK87+MGv6xozeF7TSNdt9C/tbVPstxfXECSrFH5TtnDkDqo7igD0SivOPD+oalpT6hq+s/E6w8T6bY2clxPaWVhAjoqjO/MbknABGMc5q9pPxQ8MarfWlrax6mq6hC81hcTWEkcV6ETeywsw+dgAeO+OM0AdzRXMReOvDsnh/RNdhuZZrPXbiK2sQkRLySSEgLt6jGGznpg5rmbH4n6Fpmi6P8A2pql9rd9qv2prQ2elOJLnypihRYlzgr09wpagD02iuF1P4peFtOv7m2n/tF7axmWC+1GKxke0s5Tj5JZQMKRkZ67c84qTXfiZ4c0fVr/AEgwapqF9p8ST3MWn2Elx5cTLuEhK8bcd8/nQB29JXFaj8TPDFpJpkMDX+pz6tZfbrGHTrJ53uIs9QAOCOpBxjBqrpfxb8H6ndafHatqP2a/mS2jvpLCRLZbhukDSEYEmeMevGaAO/oriNU+J3hfTtUurOY3729jOLa91KGyd7O0lOBskmAwpBIz1Azziodc+K3hbSNR1TT5I9Vu59IYDUPsWnyTLaoUDeY7KMBMHr7HjigDvaK8+T4kW8nxIXw2lpK2kNoq6kNTED+XgnO8v93ytn8X97irvh74k+Htc1SxsLeDU7X+00aTTri9sXghvlUbiYnbr8vzc4yOaAO0+tFch8I9c1LxL8PdK1rVpEkvbnzvMdECA7ZnUcDgcKK4K18T+KPFOteIYtP+IGm+G9S0y/mtLPw9PaRM0qxnCvKZCHIk65TgA96APbKK4u88cpoem6ND4h0u8bxJqFt5smj6TAbyVSoHmMAv8AJ6k9wOTUdn430jV9Y0G507xCI9OvbG8uGtZLQqX8koHZ5GwYjGSQVI5z7UAdxRXFeH/iV4b1vVbSwt01G3GoBjp11eWMkFvf7Rk+S7DDccjpkcjNVNN+LfhHUZrH7ONTFlfXAtI9Rk0+RLUTlioiaQjAYkY9OetAHoFFcPrXxP8L6Tql3ZXH9oSw6fKsOoahb2TyWtk7YwssoGFPIz1xnnFS+IfiT4a0PUrmynGo3QsVR9QubGyknhsVYZUzOowvHPcgcnigDs6KiiuLeW1S7jmR7d4xIsysCpQjIYH0xzmuO0T4l+G9Y1SysrePUoo9Sdk0++ubGSK2vWUEkRSEYPAJGcZA4zQB21Feew/F3wfLLGU/tT7Ibs2Ut+dPkFtBPv2BJJMYUk49uRnGam8YfEnQ9Em1bTY/t893p1uXurm1snnt7FyhKec4GFzwcc4HJwKAO8ornvhzqd7rfgHw7q+pSLJe32nwzzuqhQzsgJIA4HJryrwl4h8WeJNIk1O5+Lej6FKby5hFjNp1szRrHKyLks4PIUHp3oA92orhr74g6RoF3D4dv5NR1zXYrGK6kXTNOaVp4zkGUKmQBlSTzxkdc1LefEvwtDo2japay3epjXAx0+10+1ea4nC/fxGORt/izjB4oA7SivO3+Iuja5ZWVxoWs3Fhs1+20y4E+msWeR+TblWwUJyAX/AISDTpPi74PjmlBOpm2t7xrG7vV0+Q21pMH2bZJMYXJx68EE4zQB6FRXHeJPiL4e0DVLnTZ4tSvZrGJZr9tPsZLhLGNhkNMyj5eATjk45xina38Q/D2mSWUNuL7Wp721F7FDpFo904tj0mYL0Q9ievbNAHX0Vw9/8UvCFrBo8sV1dX/9twPPp8djaSTPcBWCsoUDIYE8g4xhs4xVGH4jaPo0Fy+savd6m8+t3Wn2qW+mMHSSMZFuFXJcjoG/iJoA9GorjLX4leFpfD+p61cy3enJpUywXlpe2rxXMUrY2J5WMktkbcZzmpfDHxA0PxBrraBBBqdjq6WxupLPUbF7eRIgwUMd3HO4Yxnv6UAddRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAAe1FB7UUABooooAK80+NWkXmpN4SuYPDMviW007VjcXlhGsbb4/JdfuyEKeWHWvS6KAPHjbLfeH/ABJpWi/CG68MXd9o91Cl19ntYhKxjO2MmNyeTjGeM1qXHh/VwfhQqWDldDYfb8EYtx9iaPnn+8QOM16bRQB434L8Da7YfElra/tQnhPw/c3l/o0m4ESS3W07NvbyszD/AIFUXw48JeIdL1zwRPqOlSQx6dZ6uly7FT5LTXQeMcH+JcnivaaKAPDJ9N8W6T4Q8VfDuHwfeanNrF1efYtVjeP7I0Vy7N5kzFtysm45G052jFdT4N8L6rouveMhLA7wXGm6da2d0SP9IMNq0bY5yPmx19a9KooA8c+F3hTX9I13wZcalpklvHp/hFrG5dip8qczI3lnB64BPHHFV7Twl4jT4W6DpTaTKL628VpfTQbl3LAL95C55xjYQfWva6KAPnS48Ha5Y23iDwvP4e8U6tLqOoXEltJa6r5Ol3EM0hbdNhsoQGIYbSTjjOa7fSvC+sWdp8UYDp7j+1YxHp53A/aALFYhgk/3gRzivVKKAPELbQ/GekajpEmmaHI91L4FTSI5n2NFaXqAuBMCfu5wMgEEn0zWZoOjeJD4s8DazceHfF85024dNTudXvEfy3khZMxQh9qxBjksoGBgDNfQVFAHGfBvSdR0L4b6PpWr2zWt7B53mQsQSu6Z2HQ46EH8a4TXYL+9jv8ASfHnwmm8Xamk0qWWq2FvAI7iEk+WTIWVoSAQD6YzzXt1FAHifhzQ/GHgTUvD2u6ppV94nI8OLpF4unuss9tKsxlX77LvXDBCQeqA0uteFPF3im50+a90W30SW+0LWLWZbcgx2j3BTyRIQfmcgZYjjOa9rooA8K8HeGtTudS8KWmoeGfFEMuiSJNdTavq5eytnjQqDbqHPmEk4HAAUnNW7Pwn4ih+Bfh3QDpUg1W01W3uJrXK7kRb7zGY84+7z1r2qigDx2wj8XeE4/Evhuy8Fy65Nq2r3F7Y38jRmxeOdgx+0EsGXZyCADkAY61g6z4U13Sde8W276L4q1ePXLtruxOian9ms5PMjVWinG4eXggjcQcrj0r6AooA5/TtLvdJ8AwaNpkUMV/Z6WLe2jdzJGkqxbVUs3LKCAMnqK8T0nRPFs2qeCNUvfD3i+5vNJ1CN9Wm1K7jMMbNGyN9ngV9vlgtncAMKAOcmvoyigDxR/CHiJfgTf8Ah8aVI2rS6u9wtqGXcyHUPMDZzj7nzdasS23ifw7d+PNEtvCV5raeJrqa80++t2j8jMsIQxzlmBTaV9DkdK9jooA5r4ZafeaT8O/DOl6hA1veWemwQzRNjKOqAEHHuK8h8F6GNE0eWx1/4JXOt6gt7cyNffZbOTzUeZ2T5nfcflIHPpX0HRQB594W03Um+J194jl0WbTNPuvD9nbxRy7AYpFkkLREKSAVBXpx6VwPhfSNe8GXfgvVLjRJb66trPU7O60mCaL7WiSXRlWaNGYBx90Ng5AYV7/WF4q8JeH/ABUtsNbsPtEloxe3njleGWEkYO2RCGGR1GcGgDxfQbHXPEeoavdx6M9vPD8Q7K8ubZZUc28UcUe4swOCwBG4AnBJHNbd54S8RN8EvGOgppUrapqGq3c9vbArulR7sOrA5xyvPJr1fw7oWkeG9LTS9EsY7KzRmYIhJLMTksxJJZj3JJNadAHhHiDw1releMPFlx/YvivVYNdmW6sn0LUxbwsxiVDFcDeuzBX7+CNp9sVUfwTq3hXXLe7bR/E1xp9xolpaLH4X1Ih7WeENmJyWUuh3fK56c8c19BUUAeP+A/BuraN4j8GXMuitY21npmo/alN39p+zzTzo6oZDyzEbskDGc1V0Twl4ig8VaVdz6XIsEPjPVNQkcsuFt5YGWOTr0LED1r2qigDw3xz4Z1xfEPijXktIiia9o2o2ENxcJEuoeRHtaJGY4DEnABxkgVpeHdYv9c+P0d3eeH7zRFj8LyJFDelPPdftKZZlRmCjOQATk4Jr1DX9F0rxDpM2k61YxX1jPjfDKODg5BBHIIIBBHIrP8K+DvDnhZ7mXRNP8ie62ie4lmeaWQDoC7ktgdhnFAHQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUGigAooyPSkyPSgBaKTI9KXI9KACikyPSlyPSgAooyPSjI9KACijIoyPSgAoo49KMj0oAWkoyPSjj0oAKKMj0oyPSgAoo4oyPSgAopMj0pcj0oAKKMj0ozQAUUmR6UZHpQAtFGR6UZHpQAUUZHpSZHpQAtFGR6UZHpQAUUZHpRkelABRRkelGR6UAFFJkelLkelABRRn2oyPSgAoozRkelABRRkelGR6UAFFJkelGR6UALRRx6UZHpQAUUZHpRkelABRRkelGRQAUUZHpRkelAAe1FIT0ooA//Z" alt="Ruixin Ji professional portrait" />
+          <div class="portrait-meta">
+            <span>ML + Environmental Data</span>
+            <strong>Machine-learning research mindset, product-ready execution.</strong>
+          </div>
+          <div class="signal-strip">
+            <span>Python</span>
+            <span>C#/.NET</span>
+            <span>Machine Learning</span>
+            <span>Environmental Data</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Profile highlights">
+        <article>
+          <small>01</small>
+          <strong>Machine Learning</strong>
+          <span>Research topic focused on applying ML methods to environmental science problems</span>
+        </article>
+        <article>
+          <small>02</small>
+          <strong>Environmental Data</strong>
+          <span>Domain background in environmental science and engineering data scenarios</span>
+        </article>
+        <article>
+          <small>03</small>
+          <strong>Forecasting</strong>
+          <span>Capacity forecasting, risk warning, and time-series model validation</span>
+        </article>
+        <article>
+          <small>04</small>
+          <strong>Quant Finance</strong>
+          <span>ESG multi-factor scoring, factor backtesting, and strategy reporting</span>
+        </article>
+      </section>
+
+      <section class="section two-column" id="fit">
+        <div>
+          <p class="eyebrow">Positioning</p>
+          <h2>Machine learning work where domain knowledge actually matters.</h2>
+        </div>
+        <div class="body-copy">
+          <div class="research-note">
+            <span class="note-label">Candidate signal</span>
+            <span>Turns environmental data, papers, and business reports into model-ready insight.</span>
+          </div>
+          <p>
+            I am applying for AI-related internships with a machine-learning research background and a domain
+            advantage: I understand environmental science data, sustainability information, scientific text, and
+            business research materials.
+          </p>
+          <p>
+            I bring Python foundations, C#/.NET exposure, structured research habits, and experience converting
+            messy domain materials into features, evaluations, and decision-ready summaries.
+          </p>
+        </div>
+      </section>
+
+      <section class="section skill-grid" aria-label="Skills">
+        <article>
+          <i data-lucide="brain-circuit"></i>
+          <h3>AI Application Thinking</h3>
+          <p>Frame domain workflows for retrieval, classification, summarization, evaluation, and human review.</p>
+        </article>
+        <article>
+          <i data-lucide="database"></i>
+          <h3>ML & Data Analysis</h3>
+          <p>Translate environmental and sustainability questions into datasets, features, evaluation logic, and insight.</p>
+        </article>
+        <article>
+          <i data-lucide="microscope"></i>
+          <h3>Scientific Research</h3>
+          <p>Read complex papers, synthesize methods, and connect technical evidence with machine-learning workflows.</p>
+        </article>
+        <article>
+          <i data-lucide="code-2"></i>
+          <h3>Technical Foundation</h3>
+          <p>Python, C#, object-oriented thinking, computer basics, Office automation, and fast tool learning.</p>
+        </article>
+      </section>
+
+      <section class="section lab-band" aria-label="AI internship signal">
+        <div>
+          <p class="eyebrow">Interview Angle</p>
+          <h2>Not “I know AI” — I can help AI understand a real domain.</h2>
+        </div>
+        <div class="lab-console" aria-label="Candidate fit summary">
+          <div><span>input</span><strong>environmental data, ESG reports, scientific papers, spreadsheets</strong></div>
+          <div><span>process</span><strong>feature thinking, model evaluation, extraction, validation</strong></div>
+          <div><span>output</span><strong>human-checkable ML insight for product or research teams</strong></div>
+        </div>
+      </section>
+
+      <section class="section" id="work">
+        <div class="section-heading">
+          <p class="eyebrow">Experience</p>
+          <h2>Selected experience reframed for machine-learning and AI internships.</h2>
+        </div>
+        <div class="timeline">
+          <article>
+            <span class="date">2024.01 - 2024.06</span>
+            <div>
+              <h3>Michelin Investment (China) | ESG Data Intern</h3>
+              <ul class="impact-list">
+                <li>Used Python to automate collection and cleaning of 20+ suppliers' capacity, lead-time, and on-time delivery time-series data.</li>
+                <li>Built daily indicator datasets for supply-chain modeling, capacity forecasting, and risk warning analysis.</li>
+                <li>Identified shortage and production-delay factors through feature screening to support contingency planning.</li>
+              </ul>
+            </div>
+          </article>
+          <article>
+            <span class="date">2023.10 - 2023.11</span>
+            <div>
+              <h3>Roland Berger Strategy Consultants | Consulting Intern</h3>
+              <ul class="impact-list">
+                <li>Processed 500+ target-generation records with Python, covering cleaning, feature engineering, and model training.</li>
+                <li>Adjusted replenishment strategy with heuristic optimization; backtesting showed 15% lower stockout risk and 8% higher order delivery rate.</li>
+              </ul>
+            </div>
+          </article>
+          <article>
+            <span class="date">2022.10 - 2023.03</span>
+            <div>
+              <h3>China Telecom BestPay | Operations Intern</h3>
+              <ul class="impact-list">
+                <li>Processed 500+ sales contracts and performance records, combining market trends to optimize procurement strategy and reduce excess purchasing cost by 12%.</li>
+                <li>Built a core-metric monitoring dashboard for daily orders and delivery data; delivery timeliness increased to 98%.</li>
+              </ul>
+            </div>
+          </article>
+          <article>
+            <span class="date">2025.01 - 2026.05</span>
+            <div>
+              <h3>Fudan University | Machine Learning Environmental Data Research</h3>
+              <ul class="impact-list">
+                <li>Built a time-series prediction model for photodegradation pollutant efficiency using machine-learning algorithms.</li>
+                <li>Used Python, Pandas, NumPy, Origin, and MATLAB for modeling, factor extraction, significance analysis, and validation.</li>
+                <li>Developed core skills in quantitative factor mining, time-series modeling, and backtesting-style verification.</li>
+              </ul>
+            </div>
+          </article>
+          <article>
+            <span class="date">2026.04 - 2026.06</span>
+            <div>
+              <h3>BNP Paribas Green Finance Challenge | Green Finance Project</h3>
+              <ul class="impact-list">
+                <li>Built an ESG multi-factor quantitative evaluation model to score green assets and analyze listed-company value.</li>
+                <li>Processed financial statements and ESG disclosure data with Python, completing factor backtesting and validity checks.</li>
+                <li>Delivered a quantitative strategy report and pitch, strengthening factor logic, model explanation, and investment research communication.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <p class="eyebrow">AI Portfolio Directions</p>
+          <h2>Machine-learning projects I can discuss, prototype, or extend during interviews.</h2>
+        </div>
+        <div class="project-grid">
+          <article>
+            <div class="project-top">
+              <i data-lucide="file-search"></i>
+              <span>ML / ESG</span>
+            </div>
+            <h3>Supplier Risk Forecasting Model</h3>
+            <p>
+              Builds daily supply-chain indicators and predicts capacity or delivery risks from supplier time-series
+              data.
+            </p>
+            <ul>
+              <li>20+ supplier indicators</li>
+              <li>Feature screening for shortage factors</li>
+              <li>Risk-warning output for contingency planning</li>
+            </ul>
+          </article>
+          <article>
+            <div class="project-top">
+              <i data-lucide="network"></i>
+              <span>Time Series ML</span>
+            </div>
+            <h3>Photodegradation Efficiency Prediction</h3>
+            <p>
+              Uses machine-learning algorithms to forecast pollutant degradation efficiency and identify significant
+              influencing factors.
+            </p>
+            <ul>
+              <li>Time-series prediction</li>
+              <li>Pandas, NumPy, Origin, MATLAB</li>
+              <li>Factor extraction and validation</li>
+            </ul>
+          </article>
+          <article>
+            <div class="project-top">
+              <i data-lucide="line-chart"></i>
+              <span>Quant / ESG</span>
+            </div>
+            <h3>ESG Multi-factor Investment Model</h3>
+            <p>
+              Scores green assets from financial statements and ESG disclosures, then validates factor effectiveness
+              through backtesting.
+            </p>
+            <ul>
+              <li>ESG factor construction</li>
+              <li>Python backtesting workflow</li>
+              <li>Strategy report and pitch output</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section hobbies" id="hobbies">
+        <div class="section-heading">
+          <p class="eyebrow">Beyond Work</p>
+          <h2>Energy outside the screen.</h2>
+        </div>
+        <div class="hobby-grid">
+          <article>
+            <i data-lucide="mountain"></i>
+            <h3>Rock Climbing</h3>
+            <p>Problem-solving under pressure, one route at a time.</p>
+          </article>
+          <article>
+            <i data-lucide="dumbbell"></i>
+            <h3>Fitness</h3>
+            <p>Consistency, discipline, and a clear mind.</p>
+          </article>
+          <article>
+            <i data-lucide="circle-dot"></i>
+            <h3>Basketball</h3>
+            <p>Fast decisions, teamwork, and competitive rhythm.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Open to AI product, data, research, and domain application internships.</h2>
+        </div>
+        <div class="contact-actions">
+          <a class="button primary" href="mailto:ruixin.jii@gmail.com">
+            <i data-lucide="send"></i>
+            <span>ruixin.jii@gmail.com</span>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <span>Built for AI internship applications</span>
+      <span>Ruixin Ji · 2026</span>
+    </footer>
+  </body>
+</html>
