@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,20 +10,44 @@
     />
     <style>
 :root {
+  color-scheme: light;
+  --ink: #17202a;
+  --muted: #5e6a75;
+  --faint: #8b97a3;
+  --paper: #f7f9fb;
+  --surface: #ffffff;
+  --panel: rgba(255, 255, 255, 0.82);
+  --panel-solid: #ffffff;
+  --line: rgba(23, 32, 42, 0.11);
+  --accent: #0a66c2;
+  --accent-strong: #004f9f;
+  --accent-soft: rgba(10, 102, 194, 0.1);
+  --green: #18a058;
+  --green-soft: rgba(24, 160, 88, 0.12);
+  --gold: #d89815;
+  --shadow: 0 24px 70px rgba(38, 54, 73, 0.14);
+  --shadow-soft: 0 16px 44px rgba(38, 54, 73, 0.1);
+  --radius: 8px;
+  --font: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+html[data-theme="dark"] {
   color-scheme: dark;
   --ink: #f7f7f4;
   --muted: #b9b9b4;
   --faint: #85857f;
   --paper: #050505;
-  --panel: #111111;
-  --panel-soft: #181818;
-  --line: rgba(255, 255, 255, 0.14);
+  --surface: #0d0d0d;
+  --panel: rgba(17, 17, 17, 0.86);
+  --panel-solid: #171717;
+  --line: rgba(255, 255, 255, 0.13);
   --accent: #9be22d;
-  --accent-strong: #79c100;
-  --accent-soft: rgba(155, 226, 45, 0.16);
-  --shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
-  --radius: 0;
-  --font: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --accent-strong: #b7ff3f;
+  --accent-soft: rgba(155, 226, 45, 0.15);
+  --green: #9be22d;
+  --green-soft: rgba(155, 226, 45, 0.14);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+  --shadow-soft: 0 16px 44px rgba(0, 0, 0, 0.24);
 }
 
 * {
@@ -36,13 +60,35 @@ html {
 }
 
 body {
+  position: relative;
+  min-height: 100vh;
   margin: 0;
   color: var(--ink);
   font-family: var(--font);
   background:
-    radial-gradient(circle at 78% 9%, rgba(155, 226, 45, 0.12), transparent 22rem),
-    linear-gradient(180deg, #050505 0%, #050505 58%, #0b0b0b 100%);
+    radial-gradient(circle at 16% 10%, rgba(10, 102, 194, 0.14), transparent 28rem),
+    radial-gradient(circle at 88% 20%, rgba(24, 160, 88, 0.12), transparent 24rem),
+    linear-gradient(180deg, #fbfdff 0%, #f4f8fb 46%, #f8faf7 100%);
   -webkit-font-smoothing: antialiased;
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 78% 9%, rgba(155, 226, 45, 0.12), transparent 22rem),
+    radial-gradient(circle at 14% 20%, rgba(255, 255, 255, 0.05), transparent 18rem),
+    linear-gradient(180deg, #050505 0%, #050505 58%, #0b0b0b 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 8%, rgba(10, 102, 194, 0.08) 18%, transparent 32%),
+    linear-gradient(70deg, transparent 42%, rgba(24, 160, 88, 0.08) 56%, transparent 70%);
+  animation: ambientShift 16s ease-in-out infinite alternate;
 }
 
 a {
@@ -58,12 +104,16 @@ a {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 24px;
-  min-height: 64px;
+  min-height: 66px;
   padding: 0 5vw;
   color: var(--ink);
-  background: rgba(5, 5, 5, 0.9);
+  background: rgba(255, 255, 255, 0.78);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+}
+
+html[data-theme="dark"] .site-header {
+  background: rgba(5, 5, 5, 0.86);
 }
 
 .brand {
@@ -80,10 +130,12 @@ a {
   place-items: center;
   width: 34px;
   height: 34px;
-  color: var(--paper);
-  background: var(--accent);
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--green));
+  border-radius: 8px;
   font-size: 0.74rem;
   font-weight: 900;
+  box-shadow: 0 10px 26px rgba(10, 102, 194, 0.22);
 }
 
 .brand::after {
@@ -92,7 +144,7 @@ a {
   height: 8px;
   margin-left: -4px;
   align-self: flex-end;
-  background: var(--accent);
+  background: var(--green);
   border-radius: 50%;
 }
 
@@ -102,7 +154,7 @@ a {
   gap: 28px;
   color: var(--muted);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .nav a {
@@ -117,14 +169,14 @@ a {
   right: 0;
   bottom: -22px;
   height: 3px;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--green));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 180ms ease;
 }
 
 .nav a:hover {
-  color: var(--ink);
+  color: var(--accent-strong);
 }
 
 .nav a:hover::after {
@@ -136,9 +188,23 @@ a {
   width: 38px;
   height: 38px;
   border: 1px solid var(--line);
-  color: var(--ink);
-  background: #111;
+  color: var(--accent-strong);
+  background: rgba(255, 255, 255, 0.78);
   cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(38, 54, 73, 0.08);
+}
+
+.header-actions {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+html[data-theme="dark"] .icon-button {
+  color: var(--accent);
+  background: rgba(17, 17, 17, 0.86);
 }
 
 .icon-button,
@@ -149,6 +215,7 @@ a {
   gap: 9px;
   transition:
     transform 180ms ease,
+    box-shadow 180ms ease,
     background 180ms ease,
     color 180ms ease,
     border-color 180ms ease;
@@ -156,13 +223,15 @@ a {
 
 .icon-button:hover,
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
 }
 
 .button {
   min-height: 48px;
   padding: 0 22px;
   border: 1px solid var(--line);
+  border-radius: 8px;
   font-size: 0.96rem;
   font-weight: 800;
 }
@@ -178,24 +247,24 @@ a {
 }
 
 .primary {
-  color: #050505;
-  background: var(--accent);
-  border-color: var(--accent);
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border-color: rgba(10, 102, 194, 0.18);
 }
 
 .primary:hover {
-  background: #b7ff3f;
-  border-color: #b7ff3f;
+  background: linear-gradient(135deg, #0877df, var(--accent-strong));
 }
 
 .secondary {
-  color: var(--ink);
-  background: transparent;
+  color: var(--accent-strong);
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .secondary:hover {
-  color: #050505;
-  background: var(--ink);
+  color: var(--ink);
+  background: #fff;
+  border-color: rgba(10, 102, 194, 0.28);
 }
 
 .hero {
@@ -203,7 +272,7 @@ a {
   grid-template-columns: minmax(0, 0.96fr) minmax(360px, 0.72fr);
   gap: clamp(34px, 6vw, 92px);
   align-items: center;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 66px);
   padding: clamp(68px, 9vw, 116px) 5vw 42px;
 }
 
@@ -228,7 +297,17 @@ a {
   align-items: center;
   padding: 0 12px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 22px rgba(38, 54, 73, 0.06);
+}
+
+html[data-theme="dark"] .profile-kicker span,
+html[data-theme="dark"] .secondary,
+html[data-theme="dark"] .focus-line span,
+html[data-theme="dark"] .signal-strip span,
+html[data-theme="dark"] .project-top span {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .eyebrow {
@@ -236,7 +315,7 @@ a {
   color: var(--accent);
   font-size: clamp(0.9rem, 1.4vw, 1.04rem);
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -251,10 +330,10 @@ h1 {
   position: relative;
   margin-bottom: 22px;
   max-width: 960px;
-  font-size: clamp(5rem, 12vw, 12.5rem);
+  font-size: clamp(4.7rem, 11vw, 11.8rem);
   font-weight: 900;
-  line-height: 0.82;
-  letter-spacing: -0.04em;
+  line-height: 0.86;
+  letter-spacing: 0;
 }
 
 h1::after {
@@ -263,32 +342,33 @@ h1::after {
   width: 0.14em;
   height: 0.14em;
   margin-left: 0.04em;
-  background: var(--accent);
+  background: var(--green);
   border-radius: 50%;
   vertical-align: baseline;
+  animation: pulseDot 2.8s ease-in-out infinite;
 }
 
 h2 {
   margin-bottom: 0;
-  font-size: clamp(2.4rem, 5.6vw, 6.2rem);
+  font-size: clamp(2.25rem, 5vw, 5.7rem);
   font-weight: 900;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
+  line-height: 0.98;
+  letter-spacing: 0;
 }
 
 h3 {
   margin-bottom: 10px;
   font-size: 1.22rem;
   font-weight: 900;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .hero-lede {
   max-width: 780px;
   color: var(--muted);
-  font-size: clamp(1.24rem, 2.1vw, 1.8rem);
+  font-size: clamp(1.18rem, 2vw, 1.7rem);
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.36;
 }
 
 .hero-actions,
@@ -310,9 +390,11 @@ h3 {
 .focus-line span {
   min-height: 34px;
   padding: 8px 12px;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.08);
-  border-left: 4px solid var(--accent);
+  color: var(--accent-strong);
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(10, 102, 194, 0.13);
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 800;
 }
@@ -322,10 +404,28 @@ h3 {
   overflow: hidden;
   min-height: clamp(540px, 58vw, 720px);
   background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(231, 240, 248, 0.62)),
+    #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  animation: portraitFloat 7s ease-in-out infinite;
+}
+
+html[data-theme="dark"] .portrait-panel {
+  background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
     #111;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
+}
+
+html[data-theme="dark"] .portrait-panel::before {
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, 0.18), transparent 35%, rgba(155, 226, 45, 0.08)),
+    linear-gradient(180deg, transparent 54%, rgba(5, 5, 5, 0.92));
+}
+
+html[data-theme="dark"] .portrait-panel::after {
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .portrait-panel::before {
@@ -335,8 +435,18 @@ h3 {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(5, 5, 5, 0.18), transparent 35%, rgba(155, 226, 45, 0.08)),
-    linear-gradient(180deg, transparent 54%, rgba(5, 5, 5, 0.92));
+    linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent 40%, rgba(10, 102, 194, 0.12)),
+    linear-gradient(180deg, transparent 56%, rgba(255, 255, 255, 0.94));
+}
+
+.portrait-panel::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  z-index: 1;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 8px;
 }
 
 .portrait-panel img {
@@ -347,7 +457,8 @@ h3 {
   min-height: 0;
   object-fit: cover;
   object-position: 50% 14%;
-  filter: saturate(0.95) contrast(1.08);
+  filter: saturate(0.98) contrast(1.04) brightness(1.04);
+  transform: scale(1.012);
 }
 
 .portrait-meta {
@@ -360,9 +471,17 @@ h3 {
   gap: 7px;
   padding: 18px 20px;
   color: var(--ink);
-  background: rgba(5, 5, 5, 0.72);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.88);
   border-left: 6px solid var(--accent);
+  border-radius: 8px;
   backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+
+html[data-theme="dark"] .portrait-meta {
+  background: rgba(5, 5, 5, 0.72);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 .portrait-meta span {
@@ -394,9 +513,10 @@ h3 {
   align-items: center;
   min-height: 32px;
   padding: 0 11px;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--line);
+  color: var(--accent-strong);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(10, 102, 194, 0.13);
+  border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 800;
   backdrop-filter: blur(12px);
@@ -405,14 +525,35 @@ h3 {
 .metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  margin: 0 5vw;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: var(--shadow-soft);
+}
+
+html[data-theme="dark"] .metrics,
+html[data-theme="dark"] .metrics article,
+html[data-theme="dark"] .skill-grid article,
+html[data-theme="dark"] .project-grid article,
+html[data-theme="dark"] .hobby-grid article,
+html[data-theme="dark"] .research-note,
+html[data-theme="dark"] .timeline article {
+  background: var(--panel);
+}
+
+html[data-theme="dark"] .skill-grid article:hover,
+html[data-theme="dark"] .project-grid article:hover,
+html[data-theme="dark"] .hobby-grid article:hover,
+html[data-theme="dark"] .timeline article:hover {
+  background: var(--panel-solid);
 }
 
 .metrics article {
   min-height: 190px;
   padding: 28px;
-  background: #0d0d0d;
+  background: rgba(255, 255, 255, 0.62);
   border-right: 1px solid var(--line);
 }
 
@@ -423,7 +564,7 @@ h3 {
 .metrics small {
   display: block;
   margin-bottom: 30px;
-  color: var(--accent);
+  color: var(--green);
   font-size: 0.82rem;
   font-weight: 900;
 }
@@ -473,7 +614,10 @@ h3 {
   margin-bottom: 24px;
   padding: 22px;
   background: var(--panel);
-  border-left: 6px solid var(--accent);
+  border: 1px solid rgba(10, 102, 194, 0.14);
+  border-left: 6px solid var(--green);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
 }
 
 .note-label {
@@ -508,10 +652,13 @@ h3 {
   padding: 28px;
   background: var(--panel);
   border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(38, 54, 73, 0.06);
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
 }
 
 .skill-grid article::before,
@@ -523,16 +670,17 @@ h3 {
   left: 0;
   width: 0;
   height: 6px;
-  background: var(--accent);
-  transition: width 180ms ease;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  transition: width 220ms ease;
 }
 
 .skill-grid article:hover,
 .project-grid article:hover,
 .hobby-grid article:hover {
-  transform: translateY(-4px);
-  background: #171717;
-  border-color: rgba(155, 226, 45, 0.42);
+  transform: translateY(-6px);
+  background: #fff;
+  border-color: rgba(10, 102, 194, 0.24);
+  box-shadow: var(--shadow);
 }
 
 .skill-grid article:hover::before,
@@ -557,9 +705,18 @@ h3 {
   padding: clamp(56px, 8vw, 96px);
   color: var(--ink);
   background:
+    radial-gradient(circle at 82% 0%, rgba(24, 160, 88, 0.13), transparent 30%),
+    linear-gradient(135deg, #ffffff 0%, #eef6ff 100%);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+html[data-theme="dark"] .lab-band,
+html[data-theme="dark"] .contact {
+  background:
     radial-gradient(circle at 82% 0%, rgba(155, 226, 45, 0.16), transparent 30%),
     #0d0d0d;
-  border: 1px solid var(--line);
 }
 
 .lab-console {
@@ -574,13 +731,18 @@ h3 {
   grid-template-columns: 92px 1fr;
   gap: 18px;
   padding: 20px;
-  background: #151515;
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--line);
   border-left: 5px solid var(--accent);
+  border-radius: 8px;
+}
+
+html[data-theme="dark"] .lab-console div {
+  background: #151515;
 }
 
 .lab-console span {
-  color: var(--accent);
+  color: var(--green);
   font-size: 0.8rem;
   font-weight: 900;
 }
@@ -607,6 +769,41 @@ h3 {
   margin: 0 auto;
 }
 
+.experience-groups {
+  display: grid;
+  gap: 34px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.experience-group {
+  display: grid;
+  gap: 14px;
+}
+
+.experience-group-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.28rem;
+  font-weight: 900;
+}
+
+.experience-group-title span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
 .timeline article {
   display: grid;
   grid-template-columns: 170px minmax(0, 1fr);
@@ -615,6 +812,32 @@ h3 {
   background: var(--panel);
   border: 1px solid var(--line);
   border-left: 6px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(38, 54, 73, 0.06);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+.category-tag {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 30px;
+  margin-bottom: 12px;
+  padding: 0 10px;
+  color: var(--green);
+  background: var(--green-soft);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.timeline article:hover {
+  transform: translateY(-4px);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
 }
 
 .date {
@@ -662,9 +885,11 @@ h3 {
   text-align: left;
   color: var(--ink);
   background:
-    radial-gradient(circle at 92% 0%, rgba(155, 226, 45, 0.18), transparent 28%),
-    #0d0d0d;
+    radial-gradient(circle at 92% 0%, rgba(10, 102, 194, 0.14), transparent 28%),
+    linear-gradient(135deg, #ffffff 0%, #edf7f2 100%);
   border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
 }
 
 .contact h2 {
@@ -679,6 +904,125 @@ h3 {
   color: var(--faint);
   font-size: 0.78rem;
   border-top: 1px solid var(--line);
+}
+
+.hero-copy,
+.portrait-panel,
+.metrics,
+.section,
+.lab-band,
+.contact,
+.site-footer {
+  animation: pageRise 720ms ease both;
+}
+
+.portrait-panel {
+  animation:
+    pageRise 720ms ease both,
+    portraitFloat 7s ease-in-out 900ms infinite;
+}
+
+.metrics {
+  animation-delay: 120ms;
+}
+
+.skill-grid article,
+.project-grid article,
+.hobby-grid article,
+.timeline article {
+  animation: cardRise 650ms ease both;
+}
+
+.skill-grid article:nth-child(2),
+.project-grid article:nth-child(2),
+.hobby-grid article:nth-child(2),
+.timeline article:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.skill-grid article:nth-child(3),
+.project-grid article:nth-child(3),
+.hobby-grid article:nth-child(3),
+.timeline article:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.skill-grid article:nth-child(4),
+.timeline article:nth-child(4) {
+  animation-delay: 200ms;
+}
+
+.timeline article:nth-child(5) {
+  animation-delay: 260ms;
+}
+
+@keyframes ambientShift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(2%, 1%, 0) rotate(1deg);
+  }
+}
+
+@keyframes pageRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portraitFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: 0.62;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
 }
 
 @media (max-width: 980px) {
@@ -720,11 +1064,11 @@ h3 {
   }
 
   h1 {
-    font-size: 4.5rem;
+    font-size: 4.2rem;
   }
 
   h2 {
-    font-size: 2.65rem;
+    font-size: 2.55rem;
   }
 
   .button {
@@ -758,6 +1102,11 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .metrics {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
   .metrics article {
     border-right: 0;
     border-bottom: 1px solid var(--line);
@@ -785,6 +1134,10 @@ h3 {
     padding-left: 18px;
     padding-right: 18px;
   }
+
+  .header-actions {
+    gap: 8px;
+  }
 }
 
 </style>
@@ -796,102 +1149,145 @@ const content = {
     heroEyebrow: "AI Internship Candidate",
     heroTitle: "Ruixin Ji",
     heroLead:
-      "Environmental science graduate student turning machine-learning research, data analysis, and domain problems into practical AI workflows.",
+      "Environmental science graduate student turning machine-learning research, ESG analytics, and domain data into practical AI workflows.",
     primaryCta: "View AI Portfolio",
     emailCta: "Email Me",
-    focus: ["AI Product", "Data Analyst", "ML Research", "Prompt & Evaluation"],
-    portraitMeta: ["ML + Environmental Data", "Machine-learning research mindset, product-ready execution."],
+    focus: ["AI Product", "Data Analyst", "ESG Analytics", "ML Research"],
+    portraitMeta: ["ML + ESG + Environmental Data", "Domain-aware data thinking, product-ready execution."],
     metrics: [
-      ["Machine Learning", "Research topic focused on applying ML methods to environmental science problems"],
-      ["Environmental Data", "Domain background in environmental science and engineering data scenarios"],
-      ["Forecasting", "Capacity forecasting, risk warning, and time-series model validation"],
-      ["Quant Finance", "ESG multi-factor scoring, factor backtesting, and strategy reporting"],
+      ["ESG Research", "ESG data processing, company research, disclosure analysis, and market reporting"],
+      ["Data Analytics", "Python workflows for cleaning, feature engineering, trend analysis, and dashboards"],
+      ["Machine Learning", "Time-series prediction, factor mining, validation, and model interpretation"],
+      ["Green Finance", "ESG multi-factor scoring, factor backtesting, and investment strategy storytelling"],
     ],
     fitEyebrow: "Positioning",
-    fitTitle: "Machine learning work where domain knowledge actually matters.",
+    fitTitle: "AI and data work where ESG and environmental domain knowledge matter.",
     fitBody: [
-      "I am applying for AI-related internships with a machine-learning research background and a domain advantage: I understand environmental science data, sustainability information, scientific text, and business research materials.",
-      "I bring Python foundations, C#/.NET exposure, structured research habits, and experience converting messy domain materials into features, evaluations, and decision-ready summaries.",
+      "I am applying for AI-related internships with a machine-learning research background and a domain advantage in ESG, sustainability, and environmental science.",
+      "My experience spans ESG research, structured data processing, forecasting, dashboard work, consulting analysis, and campus research. I can turn messy reports, spreadsheets, and scientific evidence into model-ready insight.",
     ],
-    note: ["Candidate signal", "Turns environmental data, papers, and business reports into model-ready insight."],
-    skillTitles: ["AI Application Thinking", "ML & Data Analysis", "Scientific Research", "Technical Foundation"],
+    note: ["Candidate signal", "Connects ESG judgment, data analysis, and machine-learning workflows."],
+    skillTitles: ["ESG Research", "Data Processing", "ML & Analytics", "Research Communication"],
     skillBodies: [
-      "Frame domain workflows for retrieval, classification, summarization, evaluation, and human review.",
-      "Translate environmental and sustainability questions into datasets, features, evaluation logic, and insight.",
-      "Read complex papers, synthesize methods, and connect technical evidence with machine-learning workflows.",
-      "Python, C#, object-oriented thinking, computer basics, Office automation, and fast tool learning.",
+      "Analyze company ESG performance, supply-chain sustainability systems, risks, and valuation implications.",
+      "Clean and structure ESG, supplier, contract, delivery, and financial datasets for trend and model analysis.",
+      "Build forecasting, factor-screening, backtesting-style validation, and interpretable quantitative workflows.",
+      "Turn analysis into reports, PPTs, charts, and interview-ready project narratives.",
+    ],
+    labEyebrow: "Interview Angle",
+    labTitle: "Not just 'I know AI' — I can help AI understand ESG and environmental data.",
+    labRows: [
+      ["input", "ESG disclosures, carbon-market charts, supplier data, scientific papers, spreadsheets"],
+      ["process", "cleaning, feature thinking, trend mining, model evaluation, human review"],
+      ["output", "decision-ready insight for AI product, data, research, or ESG teams"],
     ],
     workEyebrow: "Experience",
-    workTitle: "Selected experience reframed for machine-learning and AI internships.",
-    workItems: [
-      [
-        "2024.01 - 2024.06",
-        "Michelin Investment (China) | ESG Data Intern",
-        [
-          "Used Python to automate collection and cleaning of 20+ suppliers' capacity, lead-time, and on-time delivery time-series data.",
-          "Built daily indicator datasets for supply-chain modeling, capacity forecasting, and risk warning analysis.",
-          "Identified shortage and production-delay factors through feature screening to support contingency planning.",
+    workTitle: "Experience grouped by ESG, data analytics, and research/campus work.",
+    workGroups: [
+      {
+        title: "ESG Experience",
+        label: "Sustainable finance / ESG research",
+        items: [
+          {
+            date: "2025.11 - Present",
+            tag: "ESG Data & Trend Analysis",
+            title: "Jinsinan Financial Research Institute | ESG Intern",
+            bullets: [
+              "Processed and analyzed 1,000+ ESG-related data points, using data-mining methods for product-content and trend analysis.",
+              "Combined macroeconomic judgment with quantitative trend analysis; directional assessment accuracy reached 80%.",
+              "Supported managers in demand analysis reports, market-analysis PPTs, and carbon-market charts for business decisions and client communication.",
+            ],
+          },
+          {
+            date: "2025.01 - 2025.01",
+            tag: "ESG Due Diligence",
+            title: "MSC Consulting | ESG PTA",
+            bullets: [
+              "Analyzed ESG performance of 30 target companies, including manufacturing companies, and mapped supply-chain sustainability systems.",
+              "Reviewed supplier-entry ESG standards and identified core sustainability drivers and risk points.",
+              "Participated in valuation models for two companies, using ESG indicators such as carbon-emission intensity as adjustment variables for transaction-pricing reference.",
+            ],
+          },
+          {
+            date: "2026.04 - 2026.06",
+            tag: "Green Finance",
+            title: "BNP Paribas Green Finance Challenge | Green Finance Project",
+            bullets: [
+              "Built an ESG multi-factor quantitative evaluation model to score green assets and analyze listed-company value.",
+              "Processed financial statements and ESG disclosure data with Python, completing factor backtesting and validity checks.",
+              "Delivered a quantitative strategy report and pitch, strengthening factor logic, model explanation, and investment research communication.",
+            ],
+          },
         ],
-      ],
-      [
-        "2023.10 - 2023.11",
-        "Roland Berger Strategy Consultants | Consulting Intern",
-        [
-          "Processed 500+ target-generation records with Python, covering cleaning, feature engineering, and model training.",
-          "Adjusted replenishment strategy with heuristic optimization; backtesting showed 15% lower stockout risk and 8% higher order delivery rate.",
+      },
+      {
+        title: "Data & Business Analytics",
+        label: "Python / forecasting / dashboard",
+        items: [
+          {
+            date: "2024.01 - 2024.06",
+            tag: "Supply-chain Data",
+            title: "Michelin Investment (China) | ESG Data Intern",
+            bullets: [
+              "Used Python to automate collection and cleaning of 20+ suppliers' capacity, lead-time, and on-time delivery time-series data.",
+              "Built daily indicator datasets for supply-chain modeling, capacity forecasting, and risk warning analysis.",
+              "Identified shortage and production-delay factors through feature screening to support contingency planning.",
+            ],
+          },
+          {
+            date: "2023.10 - 2023.11",
+            tag: "Consulting Analytics",
+            title: "Roland Berger Strategy Consultants | Consulting Intern",
+            bullets: [
+              "Processed 500+ target-generation records with Python, covering cleaning, feature engineering, and model training.",
+              "Adjusted replenishment strategy with heuristic optimization; backtesting showed 15% lower stockout risk and 8% higher order delivery rate.",
+            ],
+          },
+          {
+            date: "2022.10 - 2023.03",
+            tag: "Operations Dashboard",
+            title: "China Telecom BestPay | Operations Intern",
+            bullets: [
+              "Processed 500+ sales contracts and performance records, combining market trends to optimize procurement strategy and reduce excess purchasing cost by 12%.",
+              "Built a core-metric monitoring dashboard for daily orders and delivery data; delivery timeliness increased to 98%.",
+            ],
+          },
         ],
-      ],
-      [
-        "2022.10 - 2023.03",
-        "China Telecom BestPay | Operations Intern",
-        [
-          "Processed 500+ sales contracts and performance records, combining market trends to optimize procurement strategy and reduce excess purchasing cost by 12%.",
-          "Built a core-metric monitoring dashboard for daily orders and delivery data; delivery timeliness increased to 98%.",
+      },
+      {
+        title: "Research & Campus",
+        label: "Machine learning / environmental data",
+        items: [
+          {
+            date: "2025.01 - 2026.05",
+            tag: "Machine Learning Research",
+            title: "Fudan University | Machine Learning Environmental Data Research",
+            bullets: [
+              "Built a time-series prediction model for photodegradation pollutant efficiency using machine-learning algorithms.",
+              "Used Python, Pandas, NumPy, Origin, and MATLAB for modeling, factor extraction, significance analysis, and validation.",
+              "Developed core skills in quantitative factor mining, time-series modeling, and backtesting-style verification.",
+            ],
+          },
         ],
-      ],
-      [
-        "2025.01 - 2026.05",
-        "Fudan University | Machine Learning Environmental Data Research",
-        [
-          "Built a time-series prediction model for photodegradation pollutant efficiency using machine-learning algorithms.",
-          "Used Python, Pandas, NumPy, Origin, and MATLAB for modeling, factor extraction, significance analysis, and validation.",
-          "Developed core skills in quantitative factor mining, time-series modeling, and backtesting-style verification.",
-        ],
-      ],
-      [
-        "2026.04 - 2026.06",
-        "BNP Paribas Green Finance Challenge | Green Finance Project",
-        [
-          "Built an ESG multi-factor quantitative evaluation model to score green assets and analyze listed-company value.",
-          "Processed financial statements and ESG disclosure data with Python, completing factor backtesting and validity checks.",
-          "Delivered a quantitative strategy report and pitch, strengthening factor logic, model explanation, and investment research communication.",
-        ],
-      ],
+      },
     ],
     projectEyebrow: "AI Portfolio Directions",
-    projectTitle: "Machine-learning projects I can discuss, prototype, or extend during interviews.",
-    labEyebrow: "Interview Angle",
-    labTitle: "Not “I know AI” — I can help AI understand a real domain.",
-    labRows: [
-      ["input", "environmental data, ESG reports, scientific papers, spreadsheets"],
-      ["process", "feature thinking, model evaluation, extraction, validation"],
-      ["output", "human-checkable ML insight for product or research teams"],
-    ],
+    projectTitle: "Machine-learning and ESG analytics projects I can discuss, prototype, or extend during interviews.",
     projects: [
+      [
+        "ESG Trend Mining & Market Reporting",
+        "Processes ESG and carbon-market data into quantitative trends, PPT outputs, and client-facing decision support.",
+        ["1,000+ ESG data points", "Trend analysis and visualization", "Report and PPT delivery"],
+      ],
       [
         "Supplier Risk Forecasting Model",
         "Builds daily supply-chain indicators and predicts capacity or delivery risks from supplier time-series data.",
-        ["20+ supplier indicators", "Feature screening for shortage factors", "Risk-warning output for contingency planning"],
+        ["20+ supplier indicators", "Feature screening for shortage factors", "Risk-warning output"],
       ],
       [
         "Photodegradation Efficiency Prediction",
         "Uses machine-learning algorithms to forecast pollutant degradation efficiency and identify significant influencing factors.",
         ["Time-series prediction", "Pandas, NumPy, Origin, MATLAB", "Factor extraction and validation"],
-      ],
-      [
-        "ESG Multi-factor Investment Model",
-        "Scores green assets from financial statements and ESG disclosures, then validates factor effectiveness through backtesting.",
-        ["ESG factor construction", "Python backtesting workflow", "Strategy report and pitch output"],
       ],
     ],
     hobbiesEyebrow: "Beyond Work",
@@ -902,94 +1298,142 @@ const content = {
       ["Basketball", "Fast decisions, teamwork, and competitive rhythm."],
     ],
     contactEyebrow: "Contact",
-    contactTitle: "Open to AI product, data, research, and domain application internships.",
+    contactTitle: "Open to AI product, ESG data, research, and domain application internships.",
   },
   zh: {
     nav: ["AI 匹配", "经历", "项目", "生活", "联系"],
     heroEyebrow: "AI 实习候选人",
     heroTitle: "Ruixin Ji",
-    heroLead: "将机器学习课题、环境科学数据分析与科研能力，转化为可落地的 AI 应用工作流。",
+    heroLead: "将机器学习课题、ESG 数据分析、环境科学背景与投研表达能力，转化为可落地的 AI 应用工作流。",
     primaryCta: "查看 AI 作品集",
     emailCta: "联系我",
-    focus: ["AI 产品", "数据分析", "机器学习研究", "Prompt 与评测"],
-    portraitMeta: ["机器学习 + 环境数据", "机器学习研究思维，产品级执行。"],
+    focus: ["AI 产品", "数据分析", "ESG 分析", "机器学习研究"],
+    portraitMeta: ["机器学习 + ESG + 环境数据", "领域理解与数据思维结合，具备产品级执行力。"],
     metrics: [
-      ["机器学习课题", "围绕机器学习方法在环境科学问题中的应用展开研究"],
-      ["环境数据", "具备环境科学与工程背景，理解真实数据场景"],
-      ["预测建模", "产能预测、风险预警、时序建模与验证"],
-      ["量化金融", "ESG 多因子打分、因子回测与策略报告"],
+      ["ESG 研究", "ESG 数据处理、企业表现研究、披露分析与市场报告输出"],
+      ["数据分析", "Python 清洗、特征工程、趋势分析、预测建模与看板跟踪"],
+      ["机器学习", "时序预测、因子挖掘、效果验证与可解释分析"],
+      ["绿色金融", "ESG 多因子打分、因子回测、策略报告与路演表达"],
     ],
     fitEyebrow: "定位",
-    fitTitle: "适合需要领域理解的机器学习与 AI 应用岗位。",
+    fitTitle: "适合需要 ESG、环境与数据理解的 AI 应用岗位。",
     fitBody: [
-      "我希望投递 AI 相关实习，并把自己的优势放在“机器学习 + 环境科学/可持续/数据”方向：能理解环境数据、复杂 ESG 信息、科研文本和商业研究材料。",
-      "我具备 Python 基础、C#/.NET 接触经验、结构化研究习惯，也有把复杂领域材料整理成特征、评估逻辑和可决策摘要的实践经验。",
+      "我希望投递 AI 相关实习，并把自己的优势放在“机器学习 + ESG/可持续 + 环境科学数据”方向：能理解 ESG 披露、碳市场、供应链与科研数据等真实业务材料。",
+      "我的经历覆盖 ESG 研究、结构化数据处理、趋势分析、预测建模、看板跟踪、咨询分析和校园科研，能够把复杂报告、表格和科学证据整理成模型可用、业务可判断的洞察。",
     ],
-    note: ["候选人信号", "能把环境数据、论文与商业报告，转化为模型可用、可判断、可复核的洞察。"],
-    skillTitles: ["AI 应用思维", "机器学习与数据分析", "科研文献能力", "技术基础"],
+    note: ["候选人信号", "能把 ESG 判断、数据分析和机器学习工作流连接起来。"],
+    skillTitles: ["ESG 研究", "数据处理", "机器学习与分析", "报告与表达"],
     skillBodies: [
-      "能把行业工作流拆解为检索、分类、总结、评测和人工复核环节。",
-      "将环境与可持续问题转化为数据集、特征、评估逻辑和可解释洞察。",
-      "阅读复杂论文，提炼方法、变量和证据，并连接到机器学习工作流。",
-      "Python、C#、面向对象基础、计算机基础、Office 自动化和快速学习能力。",
+      "分析企业 ESG 表现、供应链可持续体系、风险点和估值影响。",
+      "清洗并结构化 ESG、供应商、合同、订单、交付和财务数据。",
+      "构建预测、因子筛选、回测式验证和可解释量化分析流程。",
+      "将分析结果输出为报告、PPT、图表和面试可讲清的项目故事。",
+    ],
+    labEyebrow: "面试切入点",
+    labTitle: "不是只会说“我懂 AI”，而是能帮助 AI 理解 ESG 与环境数据。",
+    labRows: [
+      ["输入", "ESG 披露、碳市场图表、供应商数据、科研论文、Excel 表格"],
+      ["处理", "数据清洗、特征思维、趋势挖掘、模型评估、人工复核"],
+      ["输出", "服务 AI 产品、数据、研究或 ESG 团队的可决策洞察"],
     ],
     workEyebrow: "经历",
-    workTitle: "面向机器学习与 AI 实习重新组织的经历亮点。",
-    workItems: [
-      [
-        "2024.01 - 2024.06",
-        "米其林投资（中国）| ESG 数据实习生",
-        [
-          "使用 Python 自动化采集、清洗 20+ 供应商产能、交付周期、准时交付率等时序数据，搭建日频指标库。",
-          "构建产能预测与风险预警模型，通过特征筛选识别原材料短缺、产线延迟等关键因子。",
-          "支撑供应链数据建模与风险分析，协助制定备选方案，降低业务中断风险。",
+    workTitle: "按 ESG、数据分析、科研/校园经历重新梳理的亮点。",
+    workGroups: [
+      {
+        title: "ESG 经历",
+        label: "可持续金融 / ESG 研究",
+        items: [
+          {
+            date: "2025.11 - 至今",
+            tag: "ESG 数据与趋势分析",
+            title: "金司南金融研究院 | ESG 实习生",
+            bullets: [
+              "处理分析 1000+ ESG 相关数据，运用数据挖掘技术开展产品内容及趋势定量分析。",
+              "结合宏观经济研判发展趋势，趋势判断准确率达 80%。",
+              "协助部门经理完成多份需求分析报告，制作市场分析 PPT 及碳市场图表，支撑业务决策与客户沟通。",
+            ],
+          },
+          {
+            date: "2025.01 - 2025.01",
+            tag: "企业 ESG 表现研究",
+            title: "MSC 咨询 | ESG PTA",
+            bullets: [
+              "分析 30 家目标企业（含制造业）ESG 表现，梳理供应链可持续发展体系，如供应商准入 ESG 标准。",
+              "识别企业 ESG 核心驱动因素与风险点，形成可用于尽调和投研判断的分析框架。",
+              "参与 2 家企业估值模型构建，将碳排放强度等 ESG 绩效指标作为调整变量，提供 ESG 导向的交易定价参考。",
+            ],
+          },
+          {
+            date: "2026.04 - 2026.06",
+            tag: "绿色金融项目",
+            title: "法国巴黎银行绿色金融挑战赛 | 绿色金融项目",
+            bullets: [
+              "聚焦绿色金融与可持续投资，构建 ESG 多因子量化评估模型，对上市公司绿色资产进行打分与价值分析。",
+              "使用 Python 处理财报、ESG 披露数据，完成因子回测与有效性验证，形成绿色主题投资策略框架。",
+              "完成量化策略报告与路演，强化因子逻辑、模型解释与投研表达能力。",
+            ],
+          },
         ],
-      ],
-      [
-        "2023.10 - 2023.11",
-        "罗兰贝格战略咨询公司 | 咨询实习生",
-        [
-          "运用 Python 处理 500+ 目标生成数据，完成数据清洗、特征工程、模型训练全流程。",
-          "基于启发式优化方法调整补货策略，回测显示缺货风险降低 15%，订单交付率提升 8%。",
+      },
+      {
+        title: "数据与商业分析经历",
+        label: "Python / 预测 / 看板",
+        items: [
+          {
+            date: "2024.01 - 2024.06",
+            tag: "供应链数据建模",
+            title: "米其林投资（中国） | ESG 数据实习生",
+            bullets: [
+              "使用 Python 自动化采集、清洗 20+ 供应商产能、交付周期、准时交付率等时序数据，搭建日频指标库。",
+              "构建产能预测与风险预警模型，通过特征筛选识别原材料短缺、产线延迟等关键因子。",
+              "支撑供应链数据建模与风险分析，协助制定备选方案，降低业务中断风险。",
+            ],
+          },
+          {
+            date: "2023.10 - 2023.11",
+            tag: "咨询数据分析",
+            title: "罗兰贝格战略咨询公司 | 咨询实习生",
+            bullets: [
+              "运用 Python 处理 500+ 目标生成数据，完成数据清洗、特征工程、模型训练全流程。",
+              "基于启发式优化方法调整补货策略，回测显示缺货风险降低 15%，订单交付率提升 8%。",
+            ],
+          },
+          {
+            date: "2022.10 - 2023.03",
+            tag: "经营数据看板",
+            title: "中国电信翼支付 | 综合实习生",
+            bullets: [
+              "处理 500+ 份销售合同与绩效数据，结合市场趋势优化采购策略，降低过量采购成本 12%。",
+              "搭建核心指标监控看板，对日频订单、交付数据进行跟踪，识别并解决成本问题，交付及时率提升至 98%。",
+            ],
+          },
         ],
-      ],
-      [
-        "2022.10 - 2023.03",
-        "中国电信翼支付 | 综合实习生",
-        [
-          "处理 500+ 份销售合同与绩效数据，结合市场趋势优化采购策略，降低过量采购成本 12%。",
-          "搭建核心指标监控看板，对日频订单、交付数据进行跟踪，识别并解决成本问题，交付及时率提升至 98%。",
+      },
+      {
+        title: "科研及校园经历",
+        label: "机器学习 / 环境数据",
+        items: [
+          {
+            date: "2025.01 - 2026.05",
+            tag: "机器学习研究",
+            title: "机器学习环境数据分析研究 | 复旦大学",
+            bullets: [
+              "运用机器学习算法构建光降解污染物效率时序预测模型，完成数据处理、特征挖掘、效果验证全流程。",
+              "使用 Python、Pandas、NumPy、Origin、MATLAB 实现建模与分析，提取降解关键影响因子并做显著性分析。",
+              "具备量化因子挖掘、时序建模、回测验证等核心能力。",
+            ],
+          },
         ],
-      ],
-      [
-        "2025.01 - 2026.05",
-        "机器学习环境数据分析研究 | 复旦大学",
-        [
-          "运用机器学习算法构建光降解污染物效率时序预测模型，完成数据处理、特征挖掘、效果验证全流程。",
-          "使用 Python、Pandas、NumPy、Origin、MATLAB 实现建模与分析，提取降解关键影响因子并做显著性分析。",
-          "具备量化因子挖掘、时序建模、回测验证等核心能力。",
-        ],
-      ],
-      [
-        "2026.04 - 2026.06",
-        "法国巴黎银行绿色金融挑战赛 | 绿色金融项目",
-        [
-          "构建 ESG 多因子量化评估模型，对上市公司绿色资产进行打分与价值分析。",
-          "使用 Python 处理财报、ESG 披露数据，完成因子回测与有效性验证，形成绿色主题投资策略框架。",
-          "完成量化策略报告与路演，强化因子逻辑、模型解释与投研表达能力。",
-        ],
-      ],
+      },
     ],
     projectEyebrow: "AI 作品集方向",
-    projectTitle: "可在面试中讨论、原型化或继续扩展的机器学习项目。",
-    labEyebrow: "面试切入点",
-    labTitle: "不是只会说“我懂 AI”，而是能帮助 AI 理解真实行业。",
-    labRows: [
-      ["输入", "环境数据、ESG 报告、科研论文、Excel 表格"],
-      ["处理", "特征思维、模型评估、信息抽取、校验"],
-      ["输出", "可人工复核、能服务产品或研究团队的 ML 洞察"],
-    ],
+    projectTitle: "可在面试中讨论、原型化或继续扩展的机器学习与 ESG 数据项目。",
     projects: [
+      [
+        "ESG 趋势挖掘与市场报告",
+        "将 ESG 与碳市场数据转化为趋势判断、PPT 图表和业务决策支持。",
+        ["1000+ ESG 数据处理", "趋势分析与可视化", "报告与 PPT 输出"],
+      ],
       [
         "供应链风险预测模型",
         "基于供应商日频时序指标，预测产能与交付风险，辅助备选方案制定。",
@@ -1000,31 +1444,70 @@ const content = {
         "运用机器学习算法预测污染物光降解效率，并识别关键影响因子。",
         ["时序预测建模", "Pandas / NumPy / Origin / MATLAB", "因子提取与显著性验证"],
       ],
-      [
-        "ESG 多因子投资模型",
-        "处理财报与 ESG 披露数据，为绿色资产打分，并通过回测验证因子有效性。",
-        ["ESG 因子构建", "Python 回测流程", "策略报告与路演输出"],
-      ],
     ],
     hobbiesEyebrow: "工作之外",
     hobbiesTitle: "保持能量感，也保持判断力。",
     hobbies: [
       ["攀岩", "在路线里拆问题，训练专注和抗压。"],
       ["健身", "用长期主义维持身体和节奏。"],
-      ["打篮球", "快速决策、团队配合和竞争感。"],
+      ["篮球", "快速决策、团队配合和竞争感。"],
     ],
     contactEyebrow: "联系",
-    contactTitle: "开放投递 AI 产品、数据、研究和行业应用类实习。",
+    contactTitle: "开放投递 AI 产品、ESG 数据、研究和行业应用类实习。",
   },
 };
 
 let language = "zh";
+let theme = localStorage.getItem("theme") || "light";
+
+function iconize() {
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+}
+
+function renderWorkGroups(groups) {
+  const container = document.querySelector(".timeline");
+  container.classList.add("experience-groups");
+  container.innerHTML = groups
+    .map(
+      (group) => `
+        <section class="experience-group">
+          <h3 class="experience-group-title">${group.title}<span>${group.label}</span></h3>
+          ${group.items
+            .map(
+              (item) => `
+                <article>
+                  <span class="date">${item.date}</span>
+                  <div>
+                    <span class="category-tag">${item.tag}</span>
+                    <h3>${item.title}</h3>
+                    <ul class="impact-list">${item.bullets.map((bullet) => `<li>${bullet}</li>`).join("")}</ul>
+                  </div>
+                </article>
+              `,
+            )
+            .join("")}
+        </section>
+      `,
+    )
+    .join("");
+}
+
+function applyTheme(nextTheme) {
+  theme = nextTheme;
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("theme", theme);
+  const icon = document.querySelector("#themeToggle i");
+  if (icon) icon.setAttribute("data-lucide", theme === "dark" ? "sun" : "moon");
+  iconize();
+}
 
 function applyLanguage(nextLanguage) {
   language = nextLanguage;
   const data = content[language];
-  const navLinks = document.querySelectorAll(".nav a");
-  navLinks.forEach((link, index) => {
+
+  document.querySelectorAll(".nav a").forEach((link, index) => {
     if (data.nav[index]) link.textContent = data.nav[index];
   });
 
@@ -1055,25 +1538,17 @@ function applyLanguage(nextLanguage) {
   document.querySelectorAll(".skill-grid p").forEach((node, index) => {
     node.textContent = data.skillBodies[index];
   });
-  document.querySelector("#work .eyebrow").textContent = data.workEyebrow;
-  document.querySelector("#work h2").textContent = data.workTitle;
-  document.querySelectorAll(".timeline article").forEach((node, index) => {
-    if (!data.workItems[index]) return;
-    node.querySelector(".date").textContent = data.workItems[index][0];
-    node.querySelector("h3").textContent = data.workItems[index][1];
-    const list = node.querySelector(".impact-list");
-    if (list) {
-      list.innerHTML = data.workItems[index][2].map((item) => `<li>${item}</li>`).join("");
-    }
-  });
-  document.querySelector("#projects .eyebrow").textContent = data.projectEyebrow;
-  document.querySelector("#projects h2").textContent = data.projectTitle;
   document.querySelector(".lab-band .eyebrow").textContent = data.labEyebrow;
   document.querySelector(".lab-band h2").textContent = data.labTitle;
   document.querySelectorAll(".lab-console div").forEach((node, index) => {
     node.querySelector("span").textContent = data.labRows[index][0];
     node.querySelector("strong").textContent = data.labRows[index][1];
   });
+  document.querySelector("#work .eyebrow").textContent = data.workEyebrow;
+  document.querySelector("#work h2").textContent = data.workTitle;
+  renderWorkGroups(data.workGroups);
+  document.querySelector("#projects .eyebrow").textContent = data.projectEyebrow;
+  document.querySelector("#projects h2").textContent = data.projectTitle;
   document.querySelectorAll(".project-grid article").forEach((node, index) => {
     node.querySelector("h3").textContent = data.projects[index][0];
     node.querySelector("p").textContent = data.projects[index][1];
@@ -1093,14 +1568,17 @@ function applyLanguage(nextLanguage) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  if (window.lucide) {
-    window.lucide.createIcons();
-  }
+  document.getElementById("themeToggle").addEventListener("click", () => {
+    applyTheme(theme === "dark" ? "light" : "dark");
+  });
 
   document.getElementById("languageToggle").addEventListener("click", () => {
     applyLanguage(language === "en" ? "zh" : "en");
   });
+
+  applyTheme(theme);
   applyLanguage("zh");
+  iconize();
 });
 
 </script>
@@ -1118,9 +1596,14 @@ window.addEventListener("DOMContentLoaded", () => {
         <a href="#hobbies">Life</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="icon-button" id="languageToggle" type="button" aria-label="Switch language">
-        <i data-lucide="languages"></i>
-      </button>
+      <div class="header-actions" aria-label="Display controls">
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Switch color theme">
+          <i data-lucide="moon"></i>
+        </button>
+        <button class="icon-button" id="languageToggle" type="button" aria-label="Switch language">
+          <i data-lucide="languages"></i>
+        </button>
+      </div>
     </header>
 
     <main id="top">
@@ -1406,7 +1889,7 @@ window.addEventListener("DOMContentLoaded", () => {
     </main>
     <footer class="site-footer">
       <span>Built for AI internship applications</span>
-      <span>Ruixin Ji · 2026</span>
+      <span>Ruixin Ji | 2026</span>
     </footer>
   </body>
 </html>
